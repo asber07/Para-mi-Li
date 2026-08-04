@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Lizet | Universo Musical 3D</title>
-    <meta name="description" content="Universo 3D interactivo repleto de música, letras y poemas dedicado a Lizet (mi niña, mi Li).">
+    <meta name="description" content="Universo 3D interactivo repleto de música, poemas y amor para Lizet (mi niña, mi Li).">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -66,7 +66,7 @@
 
     <!-- Indicador Didáctico Elegante -->
     <div class="instructions-hint">
-        <p>Explora el universo 3D usando tu touchpad, mouse o dedo. Haz clic en cualquier canción para abrir el reproductor.</p>
+        <p>Explora el universo 3D usando tu touchpad, mouse o dedo. Haz clic en cualquier canción para escucharla y leer su poema.</p>
     </div>
 
     <!-- ESCENA PRINCIPAL TRIDIMENSIONAL (PERSPECTIVE 3D) -->
@@ -86,13 +86,13 @@
         </div>
     </aside>
 
-    <!-- Modal de Reproductor Agrandado (3 Columnas: Media + Letra Karaoke + Poema Elegante) -->
+    <!-- Modal de Reproductor Elegante de 2 Columnas (Media + Poema Rico) -->
     <div id="player-modal" class="modal-overlay hidden">
         <div class="player-modal-card">
             <button id="close-player-btn" class="close-modal-btn" aria-label="Cerrar reproductor">&times;</button>
             
-            <div class="player-grid">
-                <!-- Columna 1: Media (Portada & Reproductor) -->
+            <div class="player-grid-2col">
+                <!-- Columna 1: Media (Portada + Info + Reproductor YouTube) -->
                 <div class="media-column">
                     <div class="cover-wrapper">
                         <img id="player-cover-img" src="" alt="Portada de la Canción" class="player-cover-art">
@@ -114,28 +114,18 @@
                     </div>
                 </div>
 
-                <!-- Columna 2: Letras Sincronizadas Karaoke -->
-                <div class="lyrics-column">
+                <!-- Columna 2: Poema Romántico Extenso y Personalizado para Lizet -->
+                <div class="poem-column-full">
                     <div class="column-header">
-                        <h4>Letra de la Canción</h4>
+                        <h4>Poema Dedicado a Lizet</h4>
                     </div>
-                    <div id="lyrics-scroll-container" class="lyrics-wrapper">
-                        <!-- Líneas de letra animadas -->
-                    </div>
-                </div>
-
-                <!-- Columna 3: Poema Elegante Personalizado -->
-                <div class="poem-column">
-                    <div class="column-header">
-                        <h4>Poema para Lizet</h4>
-                    </div>
-                    <div class="poem-wrapper">
+                    <div class="poem-wrapper-full">
                         <div class="poem-content-card">
-                            <h5 id="poem-title">Para mi Li</h5>
+                            <h5 id="poem-title">Para mi niña, mi Li</h5>
                             <p id="poem-text-content" class="poem-body">
                                 Cargando poema...
                             </p>
-                            <div class="poem-signature">Dedicado a Lizet</div>
+                            <div class="poem-signature">Escrito con amor por Sebas para Lizet 💛</div>
                         </div>
                     </div>
                 </div>
