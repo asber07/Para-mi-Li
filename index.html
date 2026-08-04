@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Lizet | Universo Musical 3D</title>
-    <meta name="description" content="Universo 3D interactivo repleto de música y hermosos detalles para Lizet (mi niña, mi Li).">
+    <meta name="description" content="Universo 3D interactivo repleto de música, tulipanes, girasoles y hermosos detalles para Lizet (mi niña, mi Li).">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,20 +22,21 @@
         <div class="portrait-vignette-overlay"></div>
     </div>
 
-    <!-- Capa de Partículas Elegantes de Fondo -->
+    <!-- Capa de Partículas (Tulipanes 🌷 y Girasoles 🌻 Flotantes) -->
     <div id="bg-petals-container"></div>
 
     <!-- Encabezado Fijo de Navegación (Glassmorphism Navbar) -->
     <header class="navbar">
-        <!-- Izquierda: Fotos y Título -->
+        <!-- Izquierda: Fotos y Título (Al hacer clic en el avatar abre la Carta/Poema Especial de Sebas) -->
         <div class="nav-brand-group">
-            <div class="profile-avatar" title="Lizet - Mi Li">
+            <div id="btn-avatar-story" class="profile-avatar" title="¡Haz clic aquí para leer la historia de Sebas y Li! 💛">
                 <img src="imagenes/li.png" alt="Lizet" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=300&q=80'">
+                <span class="avatar-glow-ring"></span>
             </div>
             
             <div class="brand-text">
                 <h1>Para Lizet</h1>
-                <p>mi niña, mi Li 💛</p>
+                <p>mi niña, mi Li 💛 <small>(toca la foto 📸)</small></p>
             </div>
         </div>
 
@@ -47,12 +48,16 @@
             <button id="layout-grid" class="ctrl-btn">grid</button>
         </div>
 
-        <!-- Derecha: Acciones, Lista de Canciones, Poemas y Buscador -->
+        <!-- Derecha: Acciones, Acceso Privado, Lista de Canciones, Poemas y Buscador -->
         <div class="nav-actions">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="search-input" placeholder="Buscar canción o poema...">
             </div>
+
+            <button id="btn-login-access" class="nav-btn btn-glass" title="Acceso Privado para Li">
+                🔒 Acceso Privado
+            </button>
 
             <button id="btn-song-list" class="nav-btn btn-glass">
                 🎵 Lista de Músicas
@@ -67,25 +72,83 @@
     <!-- BANNER VISIBLE P.D. DE LAS FLORES (DESTACADO Y BIEN VISIBLE CON BOTÓN CERRAR) -->
     <div id="prominent-ps-banner" class="ps-banner-visible">
         <div class="ps-banner-content">
-            <span class="ps-flower-icon">🌸</span>
-            <p><strong>PD:</strong> Perdón por las flores, iban a llegar hoy, pero parece que será para otra fecha, ya que esa florería ni flores tiene jajajajaja... 💐💛</p>
+            <span class="ps-flower-icon">🌻</span>
+            <p><strong>PD:</strong> Perdón por las flores, iban a llegar hoy, pero parece que será para otra fecha, ya que esa florería ni flores tiene jajajajaja... 🌷🌻💛</p>
         </div>
         <button id="close-ps-btn" class="ps-banner-close" aria-label="Cerrar aviso">&times;</button>
     </div>
 
     <!-- Indicador Didáctico Elegante -->
     <div class="instructions-hint">
-        <p>Explora el universo 3D usando tu touchpad, mouse o dedo. Haz clic en cualquier canción para escucharla y ver su poema.</p>
+        <p>Explora el universo 3D usando tu touchpad, mouse o dedo. Haz clic en la foto de Li 📸 para leer la historia especial.</p>
     </div>
 
-    <!-- ESCENA PRINCIPAL TRIDIMENSIONAL (PERSPECTIVE 3D) -->
+    <!-- ESCENA PRINCIPAL TRIDIMENSIONAL (PERSPECTIVE 3D CENTRADA Y ULTRA-FLUIDA) -->
     <main id="container-3d">
         <div id="scene-3d">
             <div id="world-3d">
-                <!-- Se poblará dinámicamente con las tarjetas 3D doble cara -->
+                <!-- Se poblará dinámicamente con las tarjetas 3D multicolores -->
             </div>
         </div>
     </main>
+
+    <!-- MODAL ESPECIAL: LA HISTORIA DE SEBAS (ASBER) Y LIZET (Tiktok Live Story) -->
+    <div id="story-modal" class="modal-overlay hidden">
+        <div class="story-modal-card">
+            <button id="close-story-btn" class="close-modal-btn" aria-label="Cerrar historia">&times;</button>
+            <div class="story-modal-header">
+                <div class="story-avatar-frame">
+                    <img src="imagenes/li.png" alt="Lizet" onerror="this.src='imagenes/li2(1).png'">
+                </div>
+                <h2>Una historia bonita para ti, mi niña Li</h2>
+                <p class="story-subtitle">De tu Sebas (Asber) para la chica de los ojos más hermosos 💛</p>
+            </div>
+
+            <div class="story-body-content">
+                <p class="story-paragraph">
+                    Llegar a conocerte fue lo más imprevisto y asombroso que me ha pasado... 
+                </p>
+                <p class="story-paragraph">
+                    Todo empezó con un simple comentario en tu live de TikTok. Entré, dije algo para hacerte reír, y de pronto me subieron al podio para hablar. Al escucharte conversar y ver tus hermosos ojos hipnotizantes por primera vez, supe desde ese instante que quería estar ahí, sin dudarlo ni un solo segundo. Nos pasamos el número, y desde aquel día cada charla contigo ha sido un regalo maravilloso.
+                </p>
+                <p class="story-paragraph">
+                    Eres una mujer impresionante, preciosa y verdaderamente única. Me encantará conocerte mucho más día tras día, comprender tus alegrías, tus metas y hasta tus miedos. Quiero que sepas que estaré apoyándote siempre: en las buenas, en las malas y en las peores.
+                </p>
+                <p class="story-paragraph highlight-quote">
+                    "No importa el día ni el estado de ánimo en el que estés; para mí siempre serás la mujer más hermosa y especial."
+                </p>
+                <div class="story-signature">
+                    Con todo mi cariño sincero,<br>
+                    <strong>Tu Sebas (Asber)</strong> 🌷🌻
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ACCESO PRIVADO (Usuario: Lichi / Clave: 18marzo) -->
+    <div id="login-modal" class="modal-overlay hidden">
+        <div class="login-modal-card">
+            <button id="close-login-btn" class="close-modal-btn">&times;</button>
+            <div class="login-header">
+                <span class="lock-icon">🔒</span>
+                <h2>Acceso Privado para Li</h2>
+                <p>Ingresa tus credenciales para abrir la sorpresa exclusiva.</p>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div class="input-group">
+                    <label for="login-user">Usuario:</label>
+                    <input type="text" id="login-user" placeholder="Ingresa usuario (ej: Lichi)" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-pass">Contraseña:</label>
+                    <input type="password" id="login-pass" placeholder="Ingresa contraseña" required>
+                </div>
+                <div id="login-error-msg" class="login-error hidden">Usuario o contraseña incorrectos. Inténtalo de nuevo.</div>
+                <button type="submit" class="btn-gold btn-full">Desbloquear Sorpresa 💛</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Modal de Reproductor Elegante de 2 Columnas (Media + Poema Bonito) -->
     <div id="player-modal" class="modal-overlay hidden">

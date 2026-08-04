@@ -1,10 +1,11 @@
 /* ==========================================================================
    ESTILOS UI/UX PROFESIONALES: UNIVERSO 3D PARA LIZET ("mi niña, mi Li")
    Características:
-   - Tarjetas 3D SIN saltos ni desvíos al hacer hover/click (Sin override de transform)
-   - Tarjetas Doble Cara Legibles sin espejo por detrás
-   - Banner P.D. de las Flores destacado y visible
-   - Canción 44 en rojo carmesí resplandeciente
+   - Centrado perfecto y cero lag en escenario 3D
+   - Partículas flotantes de Tulipanes 🌷 y Girasoles 🌻
+   - Tarjetas 3D con Paleta de Colores Dinámica Multicolores
+   - Modal Especial "Historia de Sebas & Li" (al tocar foto)
+   - Modal de Acceso Privado (Usuario: Lichi / Clave: 18marzo)
    ========================================================================== */
 
 :root {
@@ -93,7 +94,9 @@ body {
     background: radial-gradient(circle at 35% 45%, rgba(9, 9, 14, 0.3) 0%, rgba(9, 9, 14, 0.95) 85%);
 }
 
-/* Capa de Partículas */
+/* --------------------------------------------------------------------------
+   2. TULIPANES 🌷 Y GIRASOLES 🌻 FLOTANTES DE FONDO
+   -------------------------------------------------------------------------- */
 #bg-petals-container {
     position: fixed;
     top: 0;
@@ -107,19 +110,19 @@ body {
 
 .bg-petal {
     position: absolute;
-    opacity: 0.22;
-    animation: floatParticle 16s linear infinite;
+    opacity: 0.28;
+    animation: floatFlower 18s linear infinite;
 }
 
-@keyframes floatParticle {
-    0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.25; }
-    90% { opacity: 0.25; }
-    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+@keyframes floatFlower {
+    0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
+    15% { opacity: 0.35; }
+    85% { opacity: 0.35; }
+    100% { transform: translateY(-10vh) rotate(360deg) scale(1.1); opacity: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   2. BARRA DE NAVEGACIÓN FIJA (GLASSMORPHISM)
+   3. BARRA DE NAVEGACIÓN FIJA & AVATAR INTERACTIVO CON HISTORIA
    -------------------------------------------------------------------------- */
 .navbar {
     position: fixed;
@@ -146,17 +149,33 @@ body {
 }
 
 .profile-avatar {
-    width: 44px;
-    height: 44px;
+    position: relative;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     border: 2px solid var(--gold-primary);
     overflow: hidden;
-    box-shadow: 0 0 14px var(--gold-glow);
-    transition: transform 0.3s ease;
+    box-shadow: 0 0 16px var(--gold-glow);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .profile-avatar:hover {
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(4deg);
+}
+
+.avatar-glow-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px dashed var(--gold-primary);
+    animation: spinRing 12s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes spinRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .profile-avatar img {
@@ -179,7 +198,12 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* BOTONES DE DISPOSICIÓN 3D (Table, Sphere, Helix, Grid) */
+.brand-text p small {
+    color: #a0a0c0;
+    font-size: 0.72rem;
+}
+
+/* BOTONES DE DISPOSICIÓN 3D */
 .controls-3d {
     display: flex;
     background: rgba(255, 255, 255, 0.05);
@@ -240,13 +264,13 @@ body {
     padding: 6px 14px 6px 34px;
     color: #ffffff;
     font-size: 0.82rem;
-    width: 170px;
+    width: 160px;
     outline: none;
     transition: var(--transition-smooth);
 }
 
 .search-box input:focus {
-    width: 220px;
+    width: 200px;
     border-color: var(--gold-primary);
     box-shadow: 0 0 12px var(--gold-glow);
 }
@@ -282,9 +306,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* --------------------------------------------------------------------------
-   3. BANNER DESTACADO P.D. (LAS FLORES DE LIZET)
-   -------------------------------------------------------------------------- */
+/* BANNER DESTACADO P.D. */
 .ps-banner-visible {
     position: fixed;
     top: 78px;
@@ -364,12 +386,12 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   4. ESCENA TRIDIMENSIONAL Y TARJETAS 3D ESTABLES (SIN SALTOS AL HOVER)
+   4. ESCENA TRIDIMENSIONAL CENTRADA & CARDS MULTICOLORES CERO LAG
    -------------------------------------------------------------------------- */
 #container-3d {
     width: 100vw;
-    height: calc(100vh - 120px);
-    margin-top: 80px;
+    height: calc(100vh - 110px);
+    margin-top: 70px;
     position: relative;
     overflow: hidden;
     z-index: 5;
@@ -396,10 +418,11 @@ body {
     height: 100%;
     position: absolute;
     transform-style: preserve-3d;
+    will-change: transform;
     transition: transform 0.6s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-/* CRUCIAL: EL CONTENEDOR .card-3d MANTIENE SU TRANSFORM DE JS INTACTO EN TODO MOMENTO */
+/* ESTABILIDAD Y ESTRUCTURA DE TARJETAS MULTICOLORES */
 .card-3d {
     position: absolute;
     width: 260px;
@@ -410,7 +433,7 @@ body {
     margin-top: -57.5px;
     transform-style: preserve-3d;
     cursor: pointer;
-    /* NUNCA colocar hover transform en .card-3d para evitar saltos o desvíos */
+    will-change: transform;
 }
 
 .card-face {
@@ -419,10 +442,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-dark-card);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     border-radius: 14px;
     padding: 14px;
     display: flex;
@@ -432,17 +451,11 @@ body {
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
     pointer-events: auto;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.card-face.card-front {
-    transform: rotateY(0deg);
-}
-
-/* La cara trasera se rota 180deg pero su contenido interno se invierte para que se lea perfecto sin espejo */
-.card-face.card-back {
-    transform: rotateY(180deg);
-}
+.card-face.card-front { transform: rotateY(0deg); }
+.card-face.card-back { transform: rotateY(180deg); }
 
 .card-face.card-back .card-back-inner {
     width: 100%;
@@ -452,18 +465,13 @@ body {
     gap: 12px;
 }
 
-.card-3d:hover .card-face {
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
-}
-
 .card-cover {
     width: 56px;
     height: 56px;
     border-radius: 10px;
     object-fit: cover;
     flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .card-meta {
@@ -482,49 +490,219 @@ body {
 
 .card-artist {
     font-size: 0.8rem;
-    color: #a0a0b8;
+    color: #c0c0d5;
     margin-top: 3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* CANCIONES DORADAS SÚPER DESTACADAS (ORO 24K EN AMBAS CARAS) */
-.card-3d.is-gold .card-face {
-    border: 3px solid var(--gold-primary) !important;
+/* PALETA DE COLORES DIVERSOS Y ELEGANTES PARA CADA TARJETA */
+.card-3d.theme-rose .card-face {
+    background: linear-gradient(135deg, rgba(50, 15, 30, 0.95), rgba(20, 15, 22, 0.94));
+    border: 1px solid rgba(255, 128, 171, 0.4);
+}
+.card-3d.theme-gold .card-face, .card-3d.is-gold .card-face {
     background: linear-gradient(135deg, rgba(48, 36, 10, 0.96), rgba(20, 20, 28, 0.94)) !important;
-    box-shadow: 0 0 38px var(--gold-glow), inset 0 0 18px rgba(255, 215, 0, 0.3), 0 12px 35px rgba(0, 0, 0, 0.8) !important;
+    border: 3px solid var(--gold-primary) !important;
+    box-shadow: 0 0 35px var(--gold-glow), inset 0 0 15px rgba(255, 215, 0, 0.25) !important;
+}
+.card-3d.theme-amber .card-face {
+    background: linear-gradient(135deg, rgba(45, 25, 10, 0.95), rgba(20, 16, 14, 0.94));
+    border: 1px solid rgba(255, 160, 0, 0.4);
+}
+.card-3d.theme-emerald .card-face {
+    background: linear-gradient(135deg, rgba(10, 45, 30, 0.95), rgba(12, 20, 16, 0.94));
+    border: 1px solid rgba(0, 230, 118, 0.4);
+}
+.card-3d.theme-cyan .card-face {
+    background: linear-gradient(135deg, rgba(10, 35, 50, 0.95), rgba(12, 18, 24, 0.94));
+    border: 1px solid rgba(0, 229, 255, 0.4);
+}
+.card-3d.theme-violet .card-face {
+    background: linear-gradient(135deg, rgba(35, 10, 50, 0.95), rgba(18, 12, 24, 0.94));
+    border: 1px solid rgba(213, 0, 249, 0.4);
+}
+.card-3d.theme-purple .card-face {
+    background: linear-gradient(135deg, rgba(28, 10, 45, 0.95), rgba(16, 12, 22, 0.94));
+    border: 1px solid rgba(179, 136, 255, 0.4);
+}
+.card-3d.theme-ruby .card-face {
+    background: linear-gradient(135deg, rgba(55, 10, 20, 0.95), rgba(22, 12, 15, 0.94));
+    border: 1px solid rgba(255, 82, 82, 0.4);
 }
 
-.card-3d.is-gold .card-cover {
-    border-color: var(--gold-primary);
-    box-shadow: 0 0 14px var(--gold-glow);
-}
-
-.card-3d.is-gold .card-title {
-    color: var(--gold-light);
-    text-shadow: 0 0 14px rgba(255, 215, 0, 0.6);
-}
-
-/* CANCIONES PRINCIPALES (ALL OF ME, LA PROMESA, AMOR) */
-.card-3d.is-primary .card-face {
-    border: 3px solid #ffe875 !important;
-    box-shadow: 0 0 42px rgba(255, 232, 117, 0.8) !important;
-}
-
-/* CANCIÓN 44 ROJA INTENSA ESPECIAL (NO ME DIGAS QUE NO) */
+/* CANCIÓN 44 ROJA ESPECIAL */
 .card-3d.is-red-theme .card-face {
     border: 3px solid #ff334b !important;
     background: linear-gradient(135deg, rgba(90, 10, 20, 0.96), rgba(20, 10, 15, 0.94)) !important;
     box-shadow: 0 0 38px rgba(255, 51, 75, 0.85), inset 0 0 15px rgba(255, 51, 75, 0.3) !important;
 }
 
-.card-3d.is-red-theme .card-title {
-    color: #ffb3bd !important;
+.card-3d.is-primary .card-face {
+    border: 3px solid #ffe875 !important;
+    box-shadow: 0 0 42px rgba(255, 232, 117, 0.8) !important;
 }
 
 /* --------------------------------------------------------------------------
-   5. MODAL DE REPRODUCTOR ELEGANTE DE 2 COLUMNAS (MEDIA + POEMA BONITO)
+   5. MODAL HISTORIA DE SEBAS (TIKTOK LIVE STORY MODAL)
+   -------------------------------------------------------------------------- */
+.story-modal-card {
+    background: linear-gradient(145deg, rgba(16, 16, 26, 0.98), rgba(10, 10, 18, 0.98));
+    border: 1.5px solid rgba(255, 215, 0, 0.4);
+    box-shadow: 0 25px 65px rgba(0, 0, 0, 0.9), 0 0 45px rgba(255, 215, 0, 0.2);
+    border-radius: 28px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 36px;
+    text-align: center;
+}
+
+.story-modal-header {
+    margin-bottom: 24px;
+}
+
+.story-avatar-frame {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    border: 3px solid var(--gold-primary);
+    overflow: hidden;
+    box-shadow: 0 0 25px var(--gold-glow);
+}
+
+.story-avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.story-modal-header h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--gold-primary);
+    margin-bottom: 6px;
+}
+
+.story-subtitle {
+    font-size: 0.9rem;
+    color: var(--gold-light);
+}
+
+.story-body-content {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.story-paragraph {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #e4e4f5;
+}
+
+.highlight-quote {
+    background: rgba(255, 215, 0, 0.1);
+    border-left: 3px solid var(--gold-primary);
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-style: italic;
+    color: #ffffff;
+}
+
+.story-signature {
+    margin-top: 16px;
+    text-align: right;
+    font-size: 0.95rem;
+    color: var(--gold-light);
+}
+
+/* --------------------------------------------------------------------------
+   6. MODAL DE ACCESO PRIVADO (LICHI / 18MARZO)
+   -------------------------------------------------------------------------- */
+.login-modal-card {
+    background: var(--bg-dark-modal);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 420px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+    text-align: center;
+}
+
+.login-header .lock-icon {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.login-header h2 {
+    font-family: var(--font-heading);
+    color: var(--gold-primary);
+    font-size: 1.4rem;
+}
+
+.login-header p {
+    font-size: 0.82rem;
+    color: #a0a0b5;
+    margin-top: 4px;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.input-group {
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    color: #d0d0e5;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 12px var(--gold-glow);
+}
+
+.login-error {
+    color: #ff4d6d;
+    font-size: 0.8rem;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 11px;
+    border-radius: 14px;
+    margin-top: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   7. MODAL DE REPRODUCTOR DE 2 COLUMNAS
    -------------------------------------------------------------------------- */
 .modal-overlay {
     position: fixed;
@@ -594,7 +772,6 @@ body {
     align-items: start;
 }
 
-/* Columna 1: Media (Portada + Info + Reproductor YouTube) */
 .media-column {
     display: flex;
     flex-direction: column;
@@ -672,7 +849,6 @@ body {
     font-weight: 600;
 }
 
-/* Columna 2: Poema Romántico Extenso */
 .column-header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     padding-bottom: 10px;
@@ -726,7 +902,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   6. MODAL LISTA DE CANCIONES (86 TEMAS)
+   8. MODALES LISTA DE CANCIONES Y GALERÍA DE POEMAS
    -------------------------------------------------------------------------- */
 .list-modal-card, .poems-modal-card {
     background: var(--bg-dark-modal);
@@ -788,9 +964,6 @@ body {
 .songlist-meta h4 { font-size: 0.9rem; font-weight: 600; color: #ffffff; }
 .songlist-meta p { font-size: 0.78rem; color: #a0a0b5; margin-top: 2px; }
 
-/* --------------------------------------------------------------------------
-   7. MODAL GALERÍA DE POEMAS
-   -------------------------------------------------------------------------- */
 .poems-grid-layout {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
@@ -817,7 +990,7 @@ body {
 .poem-gallery-card p { font-size: 0.9rem; line-height: 1.6; color: #e0e0f0; white-space: pre-line; }
 
 /* --------------------------------------------------------------------------
-   8. PIE DE PÁGINA
+   9. PIE DE PÁGINA
    -------------------------------------------------------------------------- */
 .main-footer {
     position: fixed;
