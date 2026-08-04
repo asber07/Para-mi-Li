@@ -1,15 +1,12 @@
 /* ==========================================================================
    LÓGICA JAVASCRIPT COMPLETA: UNIVERSO 3D PARA LIZET ("mi niña, mi Li")
-   - Centrado 3D y Cero Lag
-   - Paleta de Colores Únicos por Canción (Rose, Gold, Amber, Emerald, Cyan, Violet, Purple, Ruby)
-   - Partículas Flotantes de Tulipanes 🌷 y Girasoles 🌻
-   - Modal Especial "Historia de TikTok Live" al hacer clic en la foto de Li 📸
-   - Modal de Acceso Privado (Usuario: Lichi / Clave: 18marzo)
+   - Acceso Mandatorio Inicial (Lichi / 18marzo)
+   - Clic en Foto de Li para abrir Poema Especial de Sebas
+   - Centrado 3D e Interacción Estable por Touchpad, Trackpad o Dedo
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* Paleta de temas de colores cíclicos para tarjetas */
     const colorThemes = ['theme-rose', 'theme-gold', 'theme-amber', 'theme-emerald', 'theme-cyan', 'theme-violet', 'theme-purple', 'theme-ruby'];
 
     /* ----------------------------------------------------------------------
@@ -453,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "No Me Digas Que No",
             artist: "Enrique Iglesias ft. Wisin & Yandel",
             isGold: false,
-            isRedTheme: true, // CANCIÓN 44: ROJA ESPECIAL
+            isRedTheme: true,
             youtubeId: "zyqt2avPkoA",
             cover: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=400&q=80",
             poem: "Resaltada en rojo brillante por esa chispa única, tus lindos ojos y esa determinación genial que tienes.",
@@ -882,7 +879,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    /* Asignar tema de color dinámico a canciones que no tengan uno explícito */
     songsData.forEach((s, idx) => {
         if (!s.cardTheme) {
             s.cardTheme = colorThemes[idx % colorThemes.length];
@@ -892,15 +888,19 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ----------------------------------------------------------------------
        2. ELEMENTOS DEL DOM Y CONTROLADORES
        ---------------------------------------------------------------------- */
+    const mainAuthGate = document.getElementById('main-auth-gate');
+    const gateLoginForm = document.getElementById('gate-login-form');
+    const gateUser = document.getElementById('gate-user');
+    const gatePass = document.getElementById('gate-pass');
+    const gateErrorMsg = document.getElementById('gate-error-msg');
+
     const scene3D = document.getElementById('scene-3d');
     const world3D = document.getElementById('world-3d');
     const searchInput = document.getElementById('search-input');
     const btnPoems = document.getElementById('btn-poems');
     const btnSongList = document.getElementById('btn-song-list');
     const btnAvatarStory = document.getElementById('btn-avatar-story');
-    const btnLoginAccess = document.getElementById('btn-login-access');
 
-    // Layout buttons
     const layoutBtns = {
         table: document.getElementById('layout-table'),
         sphere: document.getElementById('layout-sphere'),
@@ -908,7 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grid: document.getElementById('layout-grid')
     };
 
-    // Modal Player
+    // Modales
     const playerModal = document.getElementById('player-modal');
     const closePlayerBtn = document.getElementById('close-player-btn');
     const playerCoverImg = document.getElementById('player-cover-img');
@@ -919,23 +919,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const poemTitle = document.getElementById('poem-title');
     const poemTextContent = document.getElementById('poem-text-content');
 
-    // Story Modal
     const storyModal = document.getElementById('story-modal');
     const closeStoryBtn = document.getElementById('close-story-btn');
 
-    // Login Modal
-    const loginModal = document.getElementById('login-modal');
-    const closeLoginBtn = document.getElementById('close-login-btn');
-    const loginForm = document.getElementById('login-form');
-    const loginUser = document.getElementById('login-user');
-    const loginPass = document.getElementById('login-pass');
-    const loginErrorMsg = document.getElementById('login-error-msg');
-
-    // Banner P.D.
     const prominentPsBanner = document.getElementById('prominent-ps-banner');
     const closePsBtn = document.getElementById('close-ps-btn');
 
-    // Modales de Lista y Poemas
     const songlistModal = document.getElementById('songlist-modal');
     const closeSonglistBtn = document.getElementById('close-songlist-btn');
     const songlistContainer = document.getElementById('songlist-container');
@@ -953,7 +942,28 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastX = 0, lastY = 0;
 
     /* ----------------------------------------------------------------------
-       3. MOTOR DE DISPOSICIÓN 3D CENTRADO Y ULTRA-FLUIDO (CERO LAG)
+       3. LÓGICA DE ACCESO OBLIGATORIO INICIAL (USUARIO: Lichi / CLAVE: 18marzo)
+       ---------------------------------------------------------------------- */
+    if (gateLoginForm) {
+        gateLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const u = gateUser.value.trim().toLowerCase();
+            const p = gatePass.value.trim();
+
+            if (u === 'lichi' && p === '18marzo') {
+                gateErrorMsg.classList.add('hidden');
+                mainAuthGate.classList.add('gate-passed');
+                setTimeout(() => {
+                    mainAuthGate.style.display = 'none';
+                }, 550);
+            } else {
+                gateErrorMsg.classList.remove('hidden');
+            }
+        });
+    }
+
+    /* ----------------------------------------------------------------------
+       4. MOTOR DE DISPOSICIÓN 3D CENTRADO Y FLUIDO
        ---------------------------------------------------------------------- */
     function render3DLayout(songsToRender, layout = 'table') {
         world3D.innerHTML = '';
@@ -962,11 +972,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         songsToRender.forEach((song, i) => {
             const cardContainer = document.createElement('div');
-            // Clases de color dinámico multicolores
             cardContainer.className = `card-3d ${song.cardTheme} ${song.isGold ? 'is-gold' : ''} ${song.isPrimary ? 'is-primary' : ''} ${song.isRedTheme ? 'is-red-theme' : ''}`;
             cardContainer.dataset.id = i;
 
-            // Estructura Doble Cara Real con contenido no invertido
             const htmlContent = `
                 <div class="card-face card-front">
                     <img src="${song.cover}" alt="${song.title}" class="card-cover">
@@ -1021,19 +1029,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const z = (layer - 0.5) * 360;
                 transformStr = `translate3d(${x}px, ${y}px, ${z}px)`;
             } 
-            else { // Table - Matriz centrada perfecta
+            else { // Table
                 const cols = 8;
                 const col = i % cols;
                 const row = Math.floor(i / cols);
                 const x = (col - (cols - 1) / 2) * 280;
-                const y = (row - 5) * 125; // Centrado vertical impecable
+                const y = (row - 5) * 125;
                 const z = (Math.sin(i * 0.5) * 120);
                 transformStr = `translate3d(${x}px, ${y}px, ${z}px)`;
             }
 
             cardContainer.style.transform = transformStr;
 
-            // Evento de apertura
             cardContainer.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openPlayer(song);
@@ -1050,7 +1057,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ----------------------------------------------------------------------
-       4. NAVEGACIÓN 3D FLUIDA (TOUCHPAD, TRACKPAD & TOUCH)
+       5. NAVEGACIÓN 3D FLUIDA (TOUCHPAD, TRACKPAD & TOUCH)
        ---------------------------------------------------------------------- */
     scene3D.addEventListener('mousedown', (e) => {
         isNavigating = true;
@@ -1111,12 +1118,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ----------------------------------------------------------------------
-       5. MODAL HISTORIA DE TIKTOK LIVE AL CLICKEAR AVATAR DE LI
+       6. MODAL HISTORIA AL CLICKEAR AVATAR O TÍTULO DE LIZET 📸
        ---------------------------------------------------------------------- */
+    function openStoryModal() {
+        storyModal.classList.remove('hidden');
+    }
+
     if (btnAvatarStory) {
-        btnAvatarStory.addEventListener('click', () => {
-            storyModal.classList.remove('hidden');
-        });
+        btnAvatarStory.addEventListener('click', openStoryModal);
     }
 
     if (closeStoryBtn) {
@@ -1128,42 +1137,6 @@ document.addEventListener('DOMContentLoaded', () => {
     storyModal.addEventListener('click', (e) => {
         if (e.target === storyModal) storyModal.classList.add('hidden');
     });
-
-    /* ----------------------------------------------------------------------
-       6. MODAL ACCESO PRIVADO (USUARIO: Lichi / CLAVE: 18marzo)
-       ---------------------------------------------------------------------- */
-    if (btnLoginAccess) {
-        btnLoginAccess.addEventListener('click', () => {
-            loginErrorMsg.classList.add('hidden');
-            loginModal.classList.remove('hidden');
-        });
-    }
-
-    if (closeLoginBtn) {
-        closeLoginBtn.addEventListener('click', () => {
-            loginModal.classList.add('hidden');
-        });
-    }
-
-    loginModal.addEventListener('click', (e) => {
-        if (e.target === loginModal) loginModal.classList.add('hidden');
-    });
-
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const userVal = loginUser.value.trim();
-            const passVal = loginPass.value.trim();
-
-            if (userVal === 'Lichi' && passVal === '18marzo') {
-                loginModal.classList.add('hidden');
-                storyModal.classList.remove('hidden');
-                loginForm.reset();
-            } else {
-                loginErrorMsg.classList.remove('hidden');
-            }
-        });
-    }
 
     /* ----------------------------------------------------------------------
        7. REPRODUCTOR DE MÚSICA & POEMA LINDO

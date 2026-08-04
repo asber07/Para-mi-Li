@@ -16,6 +16,42 @@
 </head>
 <body>
 
+    <!-- 🔒 PORTAL DE ACCESO PRIVADO INICIAL OBLIGATORIO (Usuario: Lichi / Clave: 18marzo) -->
+    <div id="main-auth-gate" class="auth-gate-overlay">
+        <div class="auth-gate-card">
+            <div class="auth-header">
+                <div class="auth-avatar-circle">
+                    <img src="imagenes/li.png" alt="Lizet" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=300&q=80'">
+                </div>
+                <h2>🔒 Universo Privado para Lizet</h2>
+                <p>Ingresa tus datos para desbloquear tu experiencia 3D 💛</p>
+            </div>
+
+            <form id="gate-login-form" class="auth-form">
+                <div class="auth-input-group">
+                    <label for="gate-user">Usuario:</label>
+                    <input type="text" id="gate-user" placeholder="Ingresa usuario (Lichi)" autocomplete="off" required>
+                </div>
+                <div class="auth-input-group">
+                    <label for="gate-pass">Contraseña:</label>
+                    <input type="password" id="gate-pass" placeholder="Ingresa contraseña (18marzo)" autocomplete="off" required>
+                </div>
+
+                <div id="gate-error-msg" class="auth-error-text hidden">
+                    ⚠️ Usuario o contraseña incorrectos. Inténtalo de nuevo.
+                </div>
+
+                <button type="submit" class="btn-gold auth-submit-btn">
+                    Desbloquear mi Universo 🌷🌻
+                </button>
+            </form>
+
+            <div class="auth-footer-note">
+                <p>Creado con todo el cariño de tu Sebas (Asber) 💛</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Retrato Romántico de Fondo Transparente con li2(1).png -->
     <div class="bg-portrait-layer">
         <img src="imagenes/li2(1).png" alt="Lizet" onerror="this.src='imagenes/li.png'">
@@ -28,8 +64,8 @@
     <!-- Encabezado Fijo de Navegación (Glassmorphism Navbar) -->
     <header class="navbar">
         <!-- Izquierda: Fotos y Título (Al hacer clic en el avatar abre la Carta/Poema Especial de Sebas) -->
-        <div class="nav-brand-group">
-            <div id="btn-avatar-story" class="profile-avatar" title="¡Haz clic aquí para leer la historia de Sebas y Li! 💛">
+        <div id="btn-avatar-story" class="nav-brand-group" style="cursor: pointer;" title="¡Haz clic aquí para leer la historia de Sebas y Li! 💛">
+            <div class="profile-avatar">
                 <img src="imagenes/li.png" alt="Lizet" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=300&q=80'">
                 <span class="avatar-glow-ring"></span>
             </div>
@@ -48,16 +84,12 @@
             <button id="layout-grid" class="ctrl-btn">grid</button>
         </div>
 
-        <!-- Derecha: Acciones, Acceso Privado, Lista de Canciones, Poemas y Buscador -->
+        <!-- Derecha: Acciones, Lista de Canciones, Poemas y Buscador -->
         <div class="nav-actions">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="search-input" placeholder="Buscar canción o poema...">
             </div>
-
-            <button id="btn-login-access" class="nav-btn btn-glass" title="Acceso Privado para Li">
-                🔒 Acceso Privado
-            </button>
 
             <button id="btn-song-list" class="nav-btn btn-glass">
                 🎵 Lista de Músicas
@@ -122,31 +154,6 @@
                     <strong>Tu Sebas (Asber)</strong> 🌷🌻
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- MODAL DE ACCESO PRIVADO (Usuario: Lichi / Clave: 18marzo) -->
-    <div id="login-modal" class="modal-overlay hidden">
-        <div class="login-modal-card">
-            <button id="close-login-btn" class="close-modal-btn">&times;</button>
-            <div class="login-header">
-                <span class="lock-icon">🔒</span>
-                <h2>Acceso Privado para Li</h2>
-                <p>Ingresa tus credenciales para abrir la sorpresa exclusiva.</p>
-            </div>
-
-            <form id="login-form" class="login-form">
-                <div class="input-group">
-                    <label for="login-user">Usuario:</label>
-                    <input type="text" id="login-user" placeholder="Ingresa usuario (ej: Lichi)" required>
-                </div>
-                <div class="input-group">
-                    <label for="login-pass">Contraseña:</label>
-                    <input type="password" id="login-pass" placeholder="Ingresa contraseña" required>
-                </div>
-                <div id="login-error-msg" class="login-error hidden">Usuario o contraseña incorrectos. Inténtalo de nuevo.</div>
-                <button type="submit" class="btn-gold btn-full">Desbloquear Sorpresa 💛</button>
-            </form>
         </div>
     </div>
 
