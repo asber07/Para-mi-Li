@@ -1,15 +1,15 @@
 /* ==========================================================================
    ESTILOS UI/UX PROFESIONALES: UNIVERSO 3D PARA LIZET ("mi niña, mi Li")
    Características:
-   - Tarjetas 3D con estructura DOBLE CARA REAL (Front + Back solidas al girar)
-   - Banner P.D. de las flores destacado y bien visible
+   - Tarjetas 3D SIN saltos ni desvíos al hacer hover/click (Sin override de transform)
+   - Tarjetas Doble Cara Legibles sin espejo por detrás
+   - Banner P.D. de las Flores destacado y visible
    - Canción 44 en rojo carmesí resplandeciente
-   - Modal de 2 columnas (Media + Poema Romántico Lindo)
    ========================================================================== */
 
 :root {
     --bg-dark-primary: #09090e;
-    --bg-dark-card: rgba(18, 18, 26, 0.94);
+    --bg-dark-card: rgba(18, 18, 26, 0.95);
     --bg-dark-modal: rgba(10, 10, 16, 0.96);
     
     --gold-primary: #ffd700;
@@ -283,7 +283,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   3. BANNER DESTACADO P.D. (LAS FLORES DE LIZET) - MUY VISIBLE Y ELEGANTE
+   3. BANNER DESTACADO P.D. (LAS FLORES DE LIZET)
    -------------------------------------------------------------------------- */
 .ps-banner-visible {
     position: fixed;
@@ -364,7 +364,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   4. ESCENA TRIDIMENSIONAL Y TARJETAS 3D DOBLE CARA REAL
+   4. ESCENA TRIDIMENSIONAL Y TARJETAS 3D ESTABLES (SIN SALTOS AL HOVER)
    -------------------------------------------------------------------------- */
 #container-3d {
     width: 100vw;
@@ -399,7 +399,7 @@ body {
     transition: transform 0.6s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-/* ESTRUCTURA DOBLE CARA REAL DE LAS TARJETAS 3D */
+/* CRUCIAL: EL CONTENEDOR .card-3d MANTIENE SU TRANSFORM DE JS INTACTO EN TODO MOMENTO */
 .card-3d {
     position: absolute;
     width: 260px;
@@ -410,7 +410,7 @@ body {
     margin-top: -57.5px;
     transform-style: preserve-3d;
     cursor: pointer;
-    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* NUNCA colocar hover transform en .card-3d para evitar saltos o desvíos */
 }
 
 .card-face {
@@ -432,19 +432,29 @@ body {
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
     pointer-events: auto;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .card-face.card-front {
     transform: rotateY(0deg);
 }
 
+/* La cara trasera se rota 180deg pero su contenido interno se invierte para que se lea perfecto sin espejo */
 .card-face.card-back {
     transform: rotateY(180deg);
 }
 
+.card-face.card-back .card-back-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .card-3d:hover .card-face {
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
 }
 
 .card-cover {

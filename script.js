@@ -1,15 +1,15 @@
 /* ==========================================================================
    LÓGICA JAVASCRIPT COMPLETA: UNIVERSO 3D PARA LIZET ("mi niña, mi Li")
-   - Tarjetas 3D con Estructura Doble Cara Real (.card-front y .card-back)
-   - Clickabilidad Total en Front y Back
-   - Banner Destacado P.D. de las Flores
-   - Poemas Ajustados al Tono Exacto: Bondad, risa, enojos tiernos, ojos cautivadores.
+   - Tarjetas 3D sin saltos al hover/click (Estabilidad 3D absoluta)
+   - Tarjetas Doble Cara Legibles por ambos lados
+   - Poemas puros y románticos sin prefijos de texto técnico
+   - Fondo dinámico único para cada canción
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ----------------------------------------------------------------------
-       1. BASE DE DATOS DE 86 CANCIONES CON POEMAS DEL TONO EXACTO
+       1. BASE DE DATOS DE 86 CANCIONES CON POEMAS LIMPIOS Y FONDOS ÚNICOS
        ---------------------------------------------------------------------- */
     const songsData = [
         {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isPrimary: true,
             youtubeId: "450p7goxZqg",
             cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nHay algo en tu forma de ser que cautiva sin esfuerzo. Me encanta tu bondad, tu risa contagiosa y hasta esos momentos en los que pones tu carita seria o reniegas un poquito, porque sigues viéndote hermosísima en cualquier estado de ánimo. Pero por encima de todo, tus ojos tienen un brillo tan bonito que simplemente hipnotiza.",
+            poem: "Hay algo en tu forma de ser que cautiva sin esfuerzo. Me encanta tu bondad, tu risa contagiosa y hasta esos momentos en los que pones tu carita seria o reniegas un poquito, porque sigues viéndote hermosísima en cualquier estado de ánimo. Pero por encima de todo, tus ojos tienen un brillo tan bonito que simplemente hipnotiza.",
             themeColor: "#3d2d00"
         },
         {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isPrimary: true,
             youtubeId: "7XPmRUp_Yf4",
             cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nPrometo sacarte siempre una sonrisa y valorar cada detalle de tu personalidad. Me fascina lo inteligente que eres, lo graciosa que te pones al bromear y esa mirada única con la que me cautivas cada día.",
+            poem: "Prometo sacarte siempre una sonrisa y valorar cada detalle de tu personalidad. Me fascina lo inteligente que eres, lo graciosa que te pones al bromear y esa mirada única con la que me cautivas cada día.",
             themeColor: "#4d2800"
         },
         {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isPrimary: true,
             youtubeId: "TX-1dI8t6WM",
             cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
-            poem: "Dedicado a Lizet:\nTus ojos poseen esa mirada profunda que tranquiliza e hipnotiza. Eres bella cuando sonríes, bella cuando te concentras y preciosa en cada uno de tus momentos.",
+            poem: "Tus ojos poseen esa mirada profunda que tranquiliza e hipnotiza. Eres bella cuando sonríes, bella cuando te concentras y preciosa en cada uno de tus momentos.",
             themeColor: "#4a001a"
         },
         {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "XpPRXTAUw_o",
             cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nTienes una magia natural en tu mirar y una chispa graciosa que alegra cualquier momento. Qué lindo es conocer a alguien tan auténtica como tú.",
+            poem: "Tienes una magia natural en tu mirar y una chispa graciosa que alegra cualquier momento. Qué lindo es conocer a alguien tan auténtica como tú.",
             themeColor: "#33004d"
         },
         {
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "wZRWpr1G1Qw",
             cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80",
-            poem: "Especial para Lizet:\nUna nota sincera para recordarte lo bonita que eres, tu bondad genuina y esa linda energía que transmites siempre.",
+            poem: "Una nota sincera para recordarte lo bonita que eres, tu bondad genuina y esa linda energía que transmites siempre.",
             themeColor: "#00332b"
         },
         {
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "TDkYk--TW-8",
             cover: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi dulce Li:\nEsa expresión tuya es inigualable. Ya estés feliz, pensativa o renegando un poquito, tu carita siempre refleja una dulzura encantadora.",
+            poem: "Esa expresión tuya es inigualable. Ya estés feliz, pensativa o renegando un poquito, tu carita siempre refleja una dulzura encantadora.",
             themeColor: "#3d2d00"
         },
         {
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "s21TuGnO5lM",
             cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
-            poem: "En la calma de la noche:\nPensar en ti es recordar la luz de tus ojos y tu manera tan bonita de sonreír. Es imposible no admirar tu esencia.",
+            poem: "Pensar en ti en la calma de la noche es recordar la luz de tus ojos y tu manera tan bonita de sonreír. Es imposible no admirar tu esencia.",
             themeColor: "#594000"
         },
         {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "pf7_auXRrYE",
             cover: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nMe encanta tu sentido del humor y lo inteligente que eres al conversar. Haces que cualquier rato sea especial.",
+            poem: "Me encanta tu sentido del humor y lo inteligente que eres al conversar. Haces que cualquier rato sea especial.",
             themeColor: "#330015"
         },
         {
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "G4-grGfxVoY",
             cover: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nTu elegancia y esa mirada cautivadora hacen que sea imposible no prestarte toda la atención. Eres realmente preciosa.",
+            poem: "Tu elegancia y esa mirada cautivadora hacen que sea imposible no prestarte toda la atención. Eres realmente preciosa.",
             themeColor: "#3d0024"
         },
         {
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "pz9O3UeM_o0",
             cover: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nAdmiro tu bondad y la nobleza con la que tratas a los demás. Eres una persona de inmenso valor.",
+            poem: "Admiro tu bondad y la nobleza con la que tratas a los demás. Eres una persona de inmenso valor.",
             themeColor: "#240047"
         },
         {
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "yv_VOxdd8ac",
             cover: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80",
-            poem: "Por mi niña Li:\nPor sacarte una sonrisa sincera y ver la luz de tus ojos, vale la pena cada detalle preparado aquí.",
+            poem: "Por sacarte una sonrisa sincera y ver la luz de tus ojos, vale la pena cada detalle preparado aquí.",
             themeColor: "#002447"
         },
         {
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "Vl6xoVstJRw",
             cover: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80",
-            poem: "Con el paso del tiempo:\nPueden pasar los días y mi fascinación por tus ojos y tu forma graciosa de ser seguirá siendo la misma.",
+            poem: "Pueden pasar los días y mi fascinación por tus ojos y tu forma graciosa de ser seguirá siendo la misma.",
             themeColor: "#4a3300"
         },
         {
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "FVvRzyXJcv8",
             cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nPosees una gracia y un estilo que cautivan desde lejos. Eres hermosa en todos los sentidos.",
+            poem: "Posees una gracia y un estilo que cautivan desde lejos. Eres hermosa en todos los sentidos.",
             themeColor: "#593e00"
         },
         {
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "VYtJAuoZxcc",
             cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&q=80",
-            poem: "Para una chica genial:\nUna combinación de inteligencia, belleza y un toque divertido muy especial.",
+            poem: "Una combinación única de inteligencia, belleza y un toque divertido muy especial.",
             themeColor: "#1a0033"
         },
         {
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "cX_KMJlqFos",
             cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nVine a recordarte lo especial que eres. Y aunque las flores verdaderas se hayan demorado, este detalle está floreciendo para ti.",
+            poem: "Vine a recordarte lo especial que eres. Y aunque las flores verdaderas se hayan demorado, este detalle está floreciendo para ti.",
             themeColor: "#594000"
         },
         {
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "Zj6f_JQLcyY",
             cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
-            poem: "Extraordinaria Lizet:\nQué bonito encontrar a alguien que logre cautivar tanto con una sola mirada.",
+            poem: "Qué bonito encontrar a alguien que logre cautivar tanto con una sola mirada.",
             themeColor: "#470024"
         },
         {
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "GEGer49wRAI",
             cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nCada faceta tuya, ya sea alegre o seria, demuestra lo asombrosa y linda que eres.",
+            poem: "Cada faceta tuya, ya sea alegre o seria, demuestra lo asombrosa y linda que eres.",
             themeColor: "#593b00"
         },
         {
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "XA8XogjPcmI",
             cover: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nTu compañía transmite una tranquilidad única. Eres genial.",
+            poem: "Tu compañía transmite una tranquilidad única. Eres genial.",
             themeColor: "#382400"
         },
         {
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "bdOXnTbyk0g",
             cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
-            poem: "Dedicado a ti, mi Li:\nUn detalle sincero para sacarte una sonrisa y decirte lo bonita que te ves hoy.",
+            poem: "Un detalle sincero para sacarte una sonrisa y decirte lo bonita que te ves hoy.",
             themeColor: "#594000"
         },
         {
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "av2yfDokA6k",
             cover: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nSi supieras lo bien que se siente conversar contigo y ver tus hermosos ojos hipnotizantes...",
+            poem: "Si supieras lo bien que se siente conversar contigo y ver tus hermosos ojos hipnotizantes...",
             themeColor: "#002436"
         },
         {
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "NUsoVlDFqZg",
             cover: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=400&q=80",
-            poem: "Alegría pura:\nTu risa y tu buena vibra contagian felicidad de inmediato.",
+            poem: "Tu risa y tu buena vibra contagian felicidad de inmediato.",
             themeColor: "#591200"
         },
         {
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "kJQP7kiw5Fk",
             cover: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=400&q=80",
-            poem: "Paso a paso:\nConocerte mejor y apreciar tu personalidad tan genuina es genial.",
+            poem: "Conocerte mejor y apreciar tu personalidad tan genuina es genial.",
             themeColor: "#59001e"
         },
         {
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "t_Fi3J4UTlg",
             cover: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80",
-            poem: "Ideal:\nInteligencia, gracia, bondad y unos ojos preciosos.",
+            poem: "Inteligencia, gracia, bondad y unos ojos preciosos.",
             themeColor: "#2b0059"
         },
         {
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "dUtEIYj4BHs",
             cover: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nQue la alegría y el éxito te acompañen siempre.",
+            poem: "Que la alegría y el éxito te acompañen siempre.",
             themeColor: "#004736"
         },
         {
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "O9825iugYPM",
             cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi niña Li:\nTus palabras y tus ojos deslumbrantes se quedan grabados de la mejor manera.",
+            poem: "Tus palabras y tus ojos deslumbrantes se quedan grabados de la mejor manera.",
             themeColor: "#594000"
         },
         {
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "cmIKUyUrKl4",
             cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nTu elegancia y esa mirada hipnotizante cautivan a cualquiera.",
+            poem: "Tu elegancia y esa mirada hipnotizante cautivan a cualquiera.",
             themeColor: "#470036"
         },
         {
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "9walz0NcB78",
             cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
-            poem: "Aprecio sincero:\nTu buen trato y amabilidad valen muchísimo.",
+            poem: "Tu buen trato y amabilidad valen muchísimo.",
             themeColor: "#380000"
         },
         {
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "_kxz7WX4mLU",
             cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nQué gran gusto haber coincidido con una chica tan linda como tú.",
+            poem: "Qué gran gusto haber coincidido con una chica tan linda como tú.",
             themeColor: "#003847"
         },
         {
@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "xhPykGmB0dk",
             cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80",
-            poem: "Incomparable:\nNo existe nadie con tu sentido del humor, tu bondad y tus ojos cautivadores. Eres única.",
+            poem: "No existe nadie con tu sentido del humor, tu bondad y tus ojos cautivadores. Eres única.",
             themeColor: "#4a3c00"
         },
         {
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "Z0MzSY5RTYI",
             cover: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nNadie más brinda la serenidad que tú transmites.",
+            poem: "Nadie más brinda la serenidad que tú transmites.",
             themeColor: "#38004a"
         },
         {
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "DI71FIdguUs",
             cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nTu soltura y la dulzura con la que caminas por la vida son admirables.",
+            poem: "Tu soltura y la dulzura con la que caminas por la vida son admirables.",
             themeColor: "#120047"
         },
         {
@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "CaSCapHZhc0",
             cover: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80",
-            poem: "Para ti:\nUn detalle sincero preparado con aprecio genuino.",
+            poem: "Un detalle sincero preparado con aprecio genuino.",
             themeColor: "#59003e"
         },
         {
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "sD9_l3oDOag",
             cover: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=400&q=80",
-            poem: "Brillo único:\nNo hay nadie más que ilumine el ambiente con tanta naturalidad como tú.",
+            poem: "No hay nadie más que ilumine el ambiente con tanta naturalidad como tú.",
             themeColor: "#003e59"
         },
         {
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "x-0KoCAV4mc",
             cover: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=400&q=80",
-            poem: "Estimada Li:\nGracias por tu forma bonita de ser y tu linda sonrisa.",
+            poem: "Gracias por tu forma bonita de ser y tu linda sonrisa.",
             themeColor: "#594700"
         },
         {
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "QD0aSAe67CI",
             cover: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80",
-            poem: "Virtudes nobles:\nBondad, inteligencia, chispa graciosa y unos ojos hermosos.",
+            poem: "Bondad, inteligencia, chispa graciosa y unos ojos hermosos.",
             themeColor: "#470024"
         },
         {
@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "4Ja6WLrZlAE",
             cover: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80",
-            poem: "Confesión sincera:\nConfieso que fue un gusto inmenso preparar este espacio para ti.",
+            poem: "Confieso que fue un gusto inmenso preparar este espacio para ti.",
             themeColor: "#240038"
         },
         {
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "Mcj75l2gJcY",
             cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80",
-            poem: "Brillo propio:\nTus ojos brillan con una luz preciosa que hipnotiza a cualquiera.",
+            poem: "Tus ojos brillan con una luz preciosa que hipnotiza a cualquiera.",
             themeColor: "#594c00"
         },
         {
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "zLX_GcXt2pI",
             cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nContigo la serenidad fluye con mucha paz.",
+            poem: "Contigo la serenidad fluye con mucha paz.",
             themeColor: "#003859"
         },
         {
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "Zd1Flawc1-I",
             cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nUna valía humana tan grande como la tuya se aprecia siempre.",
+            poem: "Una valía humana tan grande como la tuya se aprecia siempre.",
             themeColor: "#472400"
         },
         {
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "KZh60U1PqSE",
             cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80",
-            poem: "Apoyo constante:\nMantendré mi aprecio sincero hacia tu forma de ser.",
+            poem: "Mantendré mi aprecio sincero hacia tu forma de ser.",
             themeColor: "#590024"
         },
         {
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "2vODuvIdQvU",
             cover: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=400&q=80",
-            poem: "Armonía:\nEste detalle es un saludo constante dedicado a ti.",
+            poem: "Este detalle es un saludo constante dedicado a ti.",
             themeColor: "#380024"
         },
         {
@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "o2tdLOK7-PE",
             cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nTu inteligencia y carisma deslumbrante merecen todo aplauso.",
+            poem: "Tu inteligencia y carisma deslumbrante merecen todo aplauso.",
             themeColor: "#590059"
         },
         {
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "whBcmlaSLJM",
             cover: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nLa dulzura de tu mirar hace que admirarte sea algo automático.",
+            poem: "La dulzura de tu mirar hace que admirarte sea algo automático.",
             themeColor: "#594000"
         },
         {
@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isRedTheme: true, // CANCIÓN 44: ROJA ESPECIAL
             youtubeId: "zyqt2avPkoA",
             cover: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=400&q=80",
-            poem: "Pasión (Canción 44 Especial en Rojo):\nResaltada en rojo brillante por esa chispa única, tus lindos ojos y esa determinación genial que tienes.",
+            poem: "Resaltada en rojo brillante por esa chispa única, tus lindos ojos y esa determinación genial que tienes.",
             themeColor: "#800000"
         },
         {
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "4DO8GsIYfhQ",
             cover: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=400&q=80",
-            poem: "Ojos cautivadores:\nTus ojos reflejan una dulzura e inteligencia asombrosas.",
+            poem: "Tus ojos reflejan una dulzura e inteligencia asombrosas.",
             themeColor: "#592b00"
         },
         {
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "qExd-3oCTl4",
             cover: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80",
-            poem: "Con afecto:\nUn espacio digital creado exclusivamente para tu agrado.",
+            poem: "Un espacio digital creado exclusivamente para tu agrado.",
             themeColor: "#59002d"
         },
         {
@@ -436,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "szPIgrYCxSY",
             cover: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80",
-            poem: "Gran mente:\nTienes una agudeza mental que merece los mejores elogios.",
+            poem: "Tienes una agudeza mental que merece los mejores elogios.",
             themeColor: "#003838"
         },
         {
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "Ktq4zATPFsI",
             cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nSiempre listo para apoyarte en lo que necesites.",
+            poem: "Siempre listo para apoyarte en lo que necesites.",
             themeColor: "#33004a"
         },
         {
@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "KazUvN4Y9O4",
             cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
-            poem: "Perspectiva:\nConversar contigo es genial y muy enriquecedor.",
+            poem: "Conversar contigo es genial y muy enriquecedor.",
             themeColor: "#4a0031"
         },
         {
@@ -463,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "hdlmy0nZ9l8",
             cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nTu tiempo es valioso y tus comentarios siempre son geniales.",
+            poem: "Tu tiempo es valioso y tus comentarios siempre son geniales.",
             themeColor: "#3d2400"
         },
         {
@@ -472,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "HSVsRIeHYMY",
             cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80",
-            poem: "Constancia:\nUn aprecio genuino que se mantiene constante.",
+            poem: "Un aprecio genuino que se mantiene constante.",
             themeColor: "#243800"
         },
         {
@@ -481,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "OFKyMaXdt1Y",
             cover: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=400&q=80",
-            poem: "Estilo único:\nEs genial ver cómo logras destacar con tanta naturalidad.",
+            poem: "Es genial ver cómo logras destacar con tanta naturalidad.",
             themeColor: "#381c00"
         },
         {
@@ -490,7 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "4glI-KAt56c",
             cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
-            poem: "Luz nueva:\nTu presencia trajo una bonita claridad.",
+            poem: "Tu presencia trajo una bonita claridad.",
             themeColor: "#4a3800"
         },
         {
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "d2ePHppbXPU",
             cover: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80",
-            poem: "Para Lizet:\nLa alta consideración se refleja en cada detalle respetuoso hacia ti.",
+            poem: "La alta consideración se refleja en cada detalle respetuoso hacia ti.",
             themeColor: "#4a0024"
         },
         {
@@ -508,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "4NUiK3O4SLI",
             cover: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=400&q=80",
-            poem: "Claridad:\nTus ideas están respaldadas por una mente brillante.",
+            poem: "Tus ideas están respaldadas por una mente brillante.",
             themeColor: "#590000"
         },
         {
@@ -517,7 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "rqMdesRXJpc",
             cover: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=400&q=80",
-            poem: "Admiración:\nAdmiro tu sentido del humor, tu amabilidad y tus deslumbrantes ojos.",
+            poem: "Admiro tu sentido del humor, tu amabilidad y tus deslumbrantes ojos.",
             themeColor: "#592400"
         },
         {
@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "8DlJh8HRkug",
             cover: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80",
-            poem: "Éxito:\nEstás construyendo un gran camino guiado por tu talento.",
+            poem: "Estás construyendo un gran camino guiado por tu talento.",
             themeColor: "#240024"
         },
         {
@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "ML-f7nwdDIM",
             cover: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80",
-            poem: "Inspiración:\nTu buena actitud inspira a dar lo mejor en todo momento.",
+            poem: "Tu buena actitud inspira a dar lo mejor en todo momento.",
             themeColor: "#470012"
         },
         {
@@ -544,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "ZgNBEZ0yylA",
             cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80",
-            poem: "Homenaje:\nTe obsequio este universo 3D diseñado con todo el aprecio.",
+            poem: "Te obsequio este universo 3D diseñado con todo el aprecio.",
             themeColor: "#2d0024"
         },
         {
@@ -553,7 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "g3uERwX1FoU",
             cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi niña hermosa:\nUn espacio de confianza y valoración incondicional.",
+            poem: "Un espacio de confianza y valoración incondicional.",
             themeColor: "#594700"
         },
         {
@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "seu0bd4h15Y",
             cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
-            poem: "Distinción:\nReunir un rostro tan bonito con una risa sincera es un privilegio.",
+            poem: "Reunir un rostro tan bonito con una risa sincera es un privilegio.",
             themeColor: "#590024"
         },
         {
@@ -571,7 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "BQ6_hjFir70",
             cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi Li:\nTe expreso mi más sincera estima y buen apoyo.",
+            poem: "Te expreso mi más sincera estima y buen apoyo.",
             themeColor: "#4a3800"
         },
         {
@@ -580,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "bdVcc_8-TB8",
             cover: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=400&q=80",
-            poem: "Especial dorada:\nTu ser le otorga un estándar de nobleza y luz a mi vida.",
+            poem: "Tu ser le otorga un estándar de nobleza y luz a mi vida.",
             themeColor: "#594700"
         },
         {
@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "UPEHkLH4apc",
             cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
-            poem: "Paz:\nUn rincón seguro donde tu alegría y serenidad sean valoradas siempre.",
+            poem: "Un rincón seguro donde tu alegría y serenidad sean valoradas siempre.",
             themeColor: "#524000"
         },
         {
@@ -598,7 +598,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "LKs4eq6dwJQ",
             cover: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80",
-            poem: "A tu medida:\nEste trabajo web fue programado pensando exclusivamente en hacerte sonreír.",
+            poem: "Este trabajo web fue programado pensando exclusivamente en hacerte sonreír.",
             themeColor: "#120024"
         },
         {
@@ -607,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "MMxHDM83nF8",
             cover: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=400&q=80",
-            poem: "Gracia natural:\nTu desenvolvimiento y alegría contagiosa son geniales.",
+            poem: "Tu desenvolvimiento y alegría contagiosa son geniales.",
             themeColor: "#382400"
         },
         {
@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "foSS-zqES_I",
             cover: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=400&q=80",
-            poem: "Dedicación:\nCada detalle que sugieras será atendido con mucho gusto.",
+            poem: "Cada detalle que sugieras será atendido con mucho gusto.",
             themeColor: "#003838"
         },
         {
@@ -625,7 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "92XmX19e0O8",
             cover: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80",
-            poem: "Criterio proprio:\nTienes una personalidad auténtica que se hace querer.",
+            poem: "Tienes una personalidad auténtica que se hace querer.",
             themeColor: "#2b0047"
         },
         {
@@ -634,7 +634,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "ThSnDDn4068",
             cover: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80",
-            poem: "Luz de Astros:\nTus ojos brillan como astros deslumbrantes en el firmamento.",
+            poem: "Tus ojos brillan como astros deslumbrantes en el firmamento.",
             themeColor: "#665200"
         },
         {
@@ -643,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "4Tupj8IMOlY",
             cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80",
-            poem: "Agudeza:\nCada palabra tuya demuestra una forma muy inteligente de ver las cosas.",
+            poem: "Cada palabra tuya demuestra una forma muy inteligente de ver las cosas.",
             themeColor: "#470024"
         },
         {
@@ -652,7 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "DRdeAbYihDk",
             cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
-            poem: "Motivación:\nTu linda presencia inspira a dar lo mejor.",
+            poem: "Tu linda presencia inspira a dar lo mejor.",
             themeColor: "#593600"
         },
         {
@@ -661,7 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "XHr4ivlBCZI",
             cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
-            poem: "Recuerdos valiosos:\nCada rato compartido permanece guardado con inmenso aprecio.",
+            poem: "Cada rato compartido permanece guardado con inmenso aprecio.",
             themeColor: "#380038"
         },
         {
@@ -670,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "CCc-3jTUrA8",
             cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80",
-            poem: "Precisión y dulzura:\nCombinas una mente aguda con una dulzura hermosa.",
+            poem: "Combinas una mente aguda con una dulzura hermosa.",
             themeColor: "#002447"
         },
         {
@@ -679,7 +679,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "1fk4HGeeIjw",
             cover: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=400&q=80",
-            poem: "Valores:\nAdmiro tus principios y tu integridad.",
+            poem: "Admiro tus principios y tu integridad.",
             themeColor: "#470018"
         },
         {
@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "x622Sqjub-s",
             cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
-            poem: "Energía pura:\nTu dinamismo le pone buena vibra al día.",
+            poem: "Tu dinamismo le pone buena vibra al día.",
             themeColor: "#240000"
         },
         {
@@ -697,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "9wiEM0s4aCQ",
             cover: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80",
-            poem: "Para mi niña Li:\nCada día es ideal para admirar tu linda risa y tus hermosos ojos.",
+            poem: "Cada día es ideal para admirar tu linda risa y tus hermosos ojos.",
             themeColor: "#330047"
         },
         {
@@ -706,7 +706,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "yY3VW4saUxs",
             cover: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=400&q=80",
-            poem: "En ascenso:\nTu camino personal sigue una curva brillante.",
+            poem: "Tu camino personal sigue una curva brillante.",
             themeColor: "#592b00"
         },
         {
@@ -715,7 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: true,
             youtubeId: "2ubn0UHKbMQ",
             cover: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=400&q=80",
-            poem: "Especial dorada:\nMe enamoré de tu manera tan auténtica de ser, tus chistes graciosos y la mirada cautivadora que tienes.",
+            poem: "Me enamoré de tu manera tan auténtica de ser, tus chistes graciosos y la mirada cautivadora que tienes.",
             themeColor: "#665200"
         },
         {
@@ -724,7 +724,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "KazUvN4Y9O4",
             cover: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80",
-            poem: "Firmeza:\nMi respeto hacia ti es constante.",
+            poem: "Mi respeto hacia ti es constante.",
             themeColor: "#4a0024"
         },
         {
@@ -733,7 +733,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "Mtau4v6foHA",
             cover: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80",
-            poem: "Gratitud:\nGracias por tu sonrisa alegre y por ser como eres.",
+            poem: "Gracias por tu sonrisa alegre y por ser como eres.",
             themeColor: "#590024"
         },
         {
@@ -742,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "0yruvXjYoUo",
             cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80",
-            poem: "Desde el principio:\nTe vi y me deslumbró la luz tan bonita que transmiten tus ojos.",
+            poem: "Te vi y me deslumbró la luz tan bonita que transmiten tus ojos.",
             themeColor: "#003e59"
         },
         {
@@ -751,7 +751,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "RiF3l0ZZeeU",
             cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
-            poem: "Dulzura:\nTu trato suave demuestra lo hermosa que es tu alma.",
+            poem: "Tu trato suave demuestra lo hermosa que es tu alma.",
             themeColor: "#2b0047"
         },
         {
@@ -760,7 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "YTwT2b7SG6c",
             cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
-            poem: "Sensación genial:\nElegancia, soltura y una mirada que destaca en todo lugar.",
+            poem: "Elegancia, soltura y una mirada que destaca en todo lugar.",
             themeColor: "#4a0031"
         },
         {
@@ -769,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "nP8ZVJxiJlU",
             cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=400&q=80",
-            poem: "Afecto puro:\nMi más sincera admiración hacia tu intelecto y tus lindos sentimientos.",
+            poem: "Mi más sincera admiración hacia tu intelecto y tus lindos sentimientos.",
             themeColor: "#4a3800"
         },
         {
@@ -778,7 +778,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "SRm2Ch4oFWs",
             cover: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=400&q=80",
-            poem: "Mérito propio:\nTus logros son el fruto de tu gran talento.",
+            poem: "Tus logros son el fruto de tu gran talento.",
             themeColor: "#00384a"
         },
         {
@@ -787,7 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isGold: false,
             youtubeId: "HLODpE__LZE",
             cover: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
-            poem: "Una en un millón:\nEntre millones de personas en este planeta, tú sobresales por tus hermosos ojos hipnotizantes, tu risa graciosa y tu bondad genuina. ¡Para Lizet!",
+            poem: "Entre millones de personas en este planeta, tú sobresales por tus hermosos ojos hipnotizantes, tu risa graciosa y tu bondad genuina. ¡Para Lizet!",
             themeColor: "#593e00"
         }
     ];
@@ -843,7 +843,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastX = 0, lastY = 0;
 
     /* ----------------------------------------------------------------------
-       3. MOTOR DE DISPOSICIÓN 3D CON TARJETAS DOBLE CARA REAL
+       3. MOTOR DE DISPOSICIÓN 3D ESTABLE (SIN DESVÍOS NI SALTOS AL HOVER)
        ---------------------------------------------------------------------- */
     function render3DLayout(songsToRender, layout = 'table') {
         world3D.innerHTML = '';
@@ -855,7 +855,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cardContainer.className = `card-3d ${song.isGold ? 'is-gold' : ''} ${song.isPrimary ? 'is-primary' : ''} ${song.isRedTheme ? 'is-red-theme' : ''}`;
             cardContainer.dataset.id = i;
 
-            // ESTRUCTURA DOBLE CARA REAL (.card-front y .card-back)
+            // ESTRUCTURA DOBLE CARA REAL (Frontal y Trasera con orientación legible)
             const htmlContent = `
                 <div class="card-face card-front">
                     <img src="${song.cover}" alt="${song.title}" class="card-cover">
@@ -865,10 +865,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div class="card-face card-back">
-                    <img src="${song.cover}" alt="${song.title}" class="card-cover">
-                    <div class="card-meta">
-                        <div class="card-title">${song.title}</div>
-                        <div class="card-artist">${song.artist}</div>
+                    <div class="card-back-inner">
+                        <img src="${song.cover}" alt="${song.title}" class="card-cover">
+                        <div class="card-meta">
+                            <div class="card-title">${song.title}</div>
+                            <div class="card-artist">${song.artist}</div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -879,7 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (song.isPrimary && layout === 'table') {
                 const pIndex = i % 3;
                 const px = (pIndex - 1) * 320;
-                transformStr = `translate3d(${px}px, -180px, 150px) scale(1.12)`;
+                transformStr = `translate3d(${px}px, -180px, 150px)`;
             }
             else if (layout === 'sphere') {
                 const phi = Math.acos(-1 + (2 * i) / count);
@@ -920,7 +922,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cardContainer.style.transform = transformStr;
 
-            // Abrir reproductor al hacer clic en cualquier cara o recuadro
+            // Abrir reproductor al presionar clic en la tarjeta (funciona por delante y por detrás)
             cardContainer.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openPlayer(song);
