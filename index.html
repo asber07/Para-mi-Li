@@ -3,29 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi niña, mi Li 💛🌷 | Universo 3D de Sebas</title>
-    <meta name="description" content="Universo 3D interactivo repleto de música, tulipanes y poemas dedicados a Lizet (mi niña, mi Li).">
+    <title>Para mi niña, mi Li 💛🌷 | Sorpresa de Sebas</title>
+    <meta name="description" content="Una sorpresa llena de música, tulipanes, poemas y mucho amor para Lizet (mi niña, mi Li).">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Outfit:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Retrato Romántico de Fondo con li.png -->
-    <div class="bg-portrait-overlay">
-        <img src="imagenes/li.png" alt="Lizet" onerror="this.style.display='none'">
-        <div class="portrait-vignette"></div>
-    </div>
-
-    <!-- Capa de Partículas & Tulipanes 3D -->
+    <!-- Capa de Partículas & Tulipanes de Fondo -->
     <div id="bg-petals-container"></div>
 
-    <!-- Fotos Flotantes de Lizet (Insignias de Esquina 3D) -->
+    <!-- Fotos Fijamente Flotantes de Lizet (Esquinas superiores) -->
     <div class="floating-photo-frame left-frame" title="Mi niña hermosa, Lizet 🌷">
         <div class="photo-glow"></div>
         <img src="imagenes/li.png" alt="Lizet - Mi Li" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=300&q=80'">
@@ -48,42 +42,37 @@
             </div>
         </div>
 
-        <!-- Selector de Vistas 3D (Estilo Tabla Periódica 3D: Nube, Esfera, Hélice, Grilla) -->
-        <div class="view-preset-selector">
-            <button id="preset-cloud" class="preset-btn active" title="Nube Flotante 3D">☁️ Nube 3D</button>
-            <button id="preset-sphere" class="preset-btn" title="Esfera de Canciones 3D">🌐 Esfera 3D</button>
-            <button id="preset-helix" class="preset-btn" title="Hélice de ADN 3D">🧬 Hélice 3D</button>
-            <button id="preset-grid" class="preset-btn" title="Grilla Elegante">📊 Grilla</button>
-        </div>
-
         <div class="nav-controls">
             <!-- Buscador -->
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" placeholder="Buscar canción o poema...">
+                <input type="text" id="search-input" placeholder="Buscar canción, artista o poema...">
             </div>
 
             <!-- Botón de Poemas -->
             <button id="btn-poems" class="nav-btn btn-gold">
                 <span>📜</span> Poemas para Li
             </button>
+
+            <!-- Botón de Cambio de Vista -->
+            <button id="btn-toggle-view" class="nav-btn btn-tulip">
+                <span id="view-icon">📌</span> <span id="view-label">Vista Lista</span>
+            </button>
         </div>
     </header>
 
-    <!-- Indicador Didáctico 3D -->
+    <!-- Indicador Didáctico de Instrucciones -->
     <section class="instructions-banner">
         <div class="banner-content">
             <span class="sparkle">✨</span>
-            <p><strong>¡Gira y arrastra el Universo 3D!</strong> Haz clic en cualquier tarjeta para escuchar su música, ver la letra en vivo y leer su poema. <span>Las de resplandor dorado 🌟 son súper especiales.</span></p>
+            <p><strong>¡Arrastra los pétalos y canciones libremente por la pantalla!</strong> Haz clic en cualquiera para escucharla, ver su letra y leer su poema. <span>Las de resplandor dorado 🌟 son súper especiales.</span></p>
         </div>
     </section>
 
-    <!-- ESCENA PRINCIPAL 3D (CANVAS Y ESPACIO 3D) -->
+    <!-- LIENZO PRINCIPAL DE CANCIONES FLOTANTES -->
     <main id="main-container">
-        <div id="viewport-3d">
-            <div id="world-3d">
-                <!-- Las tarjetas 3D se generan aquí en JavaScript -->
-            </div>
+        <div id="song-canvas" class="canvas-floating">
+            <!-- Se poblará dinámicamente con JavaScript -->
         </div>
     </main>
 
@@ -95,13 +84,13 @@
         </div>
     </aside>
 
-    <!-- Modal de Reproducción (Video YouTube / Fallback + Letra Sincronizada + Poema) -->
+    <!-- Modal de Reproducción (Video YouTube + Letra + Poema) -->
     <div id="player-modal" class="modal-overlay hidden">
         <div class="player-modal-container">
             <button id="close-player-btn" class="close-modal-btn" aria-label="Cerrar reproductor">&times;</button>
             
             <div class="player-grid">
-                <!-- Columna Izquierda: Reproductor -->
+                <!-- Columna Izquierda: Reproductor YouTube -->
                 <div class="video-column">
                     <div class="song-header-info">
                         <h2 id="player-song-title">Título de la Canción</h2>
@@ -109,22 +98,22 @@
                     </div>
                     
                     <div class="iframe-wrapper">
-                        <iframe id="youtube-iframe" src="" title="Reproductor de Música" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="youtube-iframe" src="" title="Reproductor de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
-                    <!-- Enlace directo alternativo por si YouTube bloquea embebidos -->
+                    <!-- Enlace directo alternativo por si el reproductor da restricción de YouTube -->
                     <div class="external-play-fallback">
                         <a id="direct-youtube-link" href="#" target="_blank" class="yt-direct-btn">
-                            ▶️ Abrir en YouTube (Si el reproductor da error)
+                            ▶️ Escuchar directamente en YouTube
                         </a>
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Letra Sincronizada y Poema Personalizado -->
+                <!-- Columna Derecha: Poema Personalizado y Letra -->
                 <div class="details-column">
                     <div class="tab-buttons">
                         <button id="tab-poem-btn" class="tab-btn active">💌 Poema para Lizet</button>
-                        <button id="tab-lyrics-btn" class="tab-btn">🎶 Letra en Vivo</button>
+                        <button id="tab-lyrics-btn" class="tab-btn">🎶 Letra de la Canción</button>
                     </div>
 
                     <!-- Panel de Poema -->
@@ -139,15 +128,10 @@
                         </div>
                     </div>
 
-                    <!-- Panel de Letras Sincronizadas -->
+                    <!-- Panel de Letras -->
                     <div id="tab-lyrics-content" class="tab-content scrollable-panel hidden">
                         <div class="lyrics-card">
-                            <div class="lyrics-sync-bar">
-                                <button id="btn-toggle-autoscroll" class="sync-badge">▶ Auto-desplazamiento de Letra</button>
-                            </div>
-                            <div id="lyrics-lines-container" class="lyrics-lines-wrapper">
-                                <!-- Líneas de letra animadas -->
-                            </div>
+                            <pre id="lyrics-text-content">Cargando letra de la canción...</pre>
                         </div>
                     </div>
                 </div>
@@ -168,7 +152,6 @@
                 <!-- Se poblará con JS -->
             </div>
         </div>
-    </family>
     </div>
 
     <!-- Pie de Página -->

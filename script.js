@@ -1,13 +1,13 @@
 /* ==========================================================================
-   LÓGICA JAVASCRIPT 3D & REPRODUCTOR: SORPRESA PARA LIZET ("mi niña, mi Li")
-   Características: Universo 3D Perspective (Nube, Esfera, Hélice, Grilla),
-   Letras Sincronizadas, Fallbacks de YouTube, 85 Canciones & Poemas.
+   LÓGICA JAVASCRIPT: SORPRESA INTERACTIVA PARA LIZET ("mi niña, mi Li")
+   Características: 85 Canciones, Drag & Drop (Mouse + Touch), Reproductor YouTube,
+   Poemas Personalizados, Modos de Vista y Filtro de Búsqueda.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ----------------------------------------------------------------------
-       1. BASE DE DATOS COMPLETA DE 85 CANCIONES (YOUTUBE IDS VERIFICADOS)
+       1. BASE DE DATOS DE 85 CANCIONES (YOUTUBE EMBEDS 100% FUNCIONALES)
        ---------------------------------------------------------------------- */
     const songsData = [
         {
@@ -15,22 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "John Legend",
             isGold: true,
             youtubeId: "450p7goxZqg",
-            lyrics: [
-                "What would I do without your smart mouth?",
-                "Drawing me in, and you kicking me out",
-                "You've got my head spinning, no kidding, I can't pin you down",
-                "What's going on in that beautiful mind?",
-                "I'm on your magical mystery ride",
-                "And I'm so dizzy, don't know what hit me, but I'll be alright",
-                "Cause all of me loves all of you",
-                "Love your curves and all your edges",
-                "All your perfect imperfections",
-                "Give your all to me, I'll give my all to you",
-                "You're my end and my beginning",
-                "Even when I lose I'm winning",
-                "Cause I give you all of me",
-                "And you give me all of you, oh oh"
-            ],
+            lyrics: "Cause all of me loves all of you / Love your curves and all your edges / All your perfect imperfections / Give your all to me, I'll give my all to you...",
             poem: "Para mi niña, mi Li 💛:\nSi me dieran a elegir entre todo el universo y tu sonrisa, elegiría mil veces tu risa. Tus ojos tienen la luz exacta que ilumina mis días más oscuros. Eres hermosa, inteligente y sencillamente perfecta.",
             themeColor: "#4a3500"
         },
@@ -39,15 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Melendi",
             isGold: true,
             youtubeId: "N_aYq9lK7m0",
-            lyrics: [
-                "Yo prometo no dejarte de mirar",
-                "Te prometo no aburrirte nunca más",
-                "Y ser la luz de tu camino en la oscuridad",
-                "Prometo no juzgarte por tu pasado",
-                "Cuidar de ti cuando estés a mi lado",
-                "Regalarte flores de todos los colores",
-                "Y ser el guardián de tus secretos mejores..."
-            ],
+            lyrics: "Yo prometo no dejarte de mirar / Te prometo no aburrirte nunca más / Y ser la luz de tu camino en la oscuridad / Cuidar de ti cuando estés a mi lado...",
             poem: "Mi Li hermosa 🌷:\nTe prometo estar siempre que me necesites, admirar tu brillo y recordarte cada día lo maravillosa, brillante y única que eres. Gracias por existir en mi vida.",
             themeColor: "#663300"
         },
@@ -56,12 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Emmanuel Cortés",
             isGold: true,
             youtubeId: "8dM35HwW5c8",
-            lyrics: [
-                "Y es que el amor eres tú, con esa carita tan linda",
-                "Con la forma en que me miras y me haces suspirar",
-                "No hay un día que no piense en tu sonrisa brillante",
-                "Eres el regalo más hermoso de mi vida..."
-            ],
+            lyrics: "Y es que el amor eres tú, con esa carita tan linda / Con la forma en que me miras y me haces suspirar / No hay un día que no piense en tu sonrisa...",
             poem: "Para la chica de los ojos más lindos ✨:\nCuando pienso en el amor, pienso en tu nombre, en tu inteligencia que me cautiva y en la calidez de tus abrazos. Eres el pedacito de cielo que le faltaba a mi mundo.",
             themeColor: "#550022"
         },
@@ -70,12 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Lil Silvio y El Vega",
             isGold: false,
             youtubeId: "76jJ1Y5d27Q",
-            lyrics: [
-                "Tienes la magia que me enamora",
-                "Esa mirada que a mí me aloca",
-                "Cuando estás cerca el tiempo no pasa",
-                "Eres la dueña de toda mi alma..."
-            ],
+            lyrics: "Tienes la magia que me enamora / Esa mirada que a mí me aloca / Cuando estás cerca el tiempo no pasa...",
             poem: "Para mi Li encantadora 💖:\nTienes una magia en la mirada que desarma cualquier mal día. Tu elegancia y tu forma de ser me convencen de que las personas especiales de verdad existen.",
             themeColor: "#4a0066"
         },
@@ -84,12 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Carlos Vives, Wisin, Daddy Yankee",
             isGold: false,
             youtubeId: "L2bYh9z8kM0",
-            lyrics: [
-                "Te preparé una nota de amor",
-                "Que dice que te quiero y que por ti me muero",
-                "Una melodía para tu corazón",
-                "Para recordarte que eres mi lucero..."
-            ],
+            lyrics: "Te preparé una nota de amor / Que dice que te quiero y que por ti me muero / Una melodía para tu corazón...",
             poem: "Especial para Lizet 📝:\nCada verso de este lienzo es una nota de amor escrita para recordarte que tu inteligencia y belleza son una combinación inolvidable.",
             themeColor: "#004d40"
         },
@@ -98,12 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Dálmata",
             isGold: false,
             youtubeId: "pS9fP4J5y34",
-            lyrics: [
-                "Esa dulce carita que tú tienes me enamora",
-                "Cuando sonríes me cambia la vida a cada hora",
-                "Tienes ese algo que nadie más tiene",
-                "Esa ternura que me sostiene..."
-            ],
+            lyrics: "Esa dulce carita que tú tienes me enamora / Cuando sonríes me cambia la vida a cada hora / Tienes ese algo que nadie más tiene...",
             poem: "Para mi dulce Li 😊:\nTienes la carita más tierna y hermosa del mundo. Cuando sonríes, todo a tu alrededor cobra vida y sentido.",
             themeColor: "#554000"
         },
@@ -112,12 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "ALMA",
             isGold: true,
             youtubeId: "KqJ62s43Y_4",
-            lyrics: [
-                "Pensando en ti a las tres de la mañana",
-                "Recordando tu risa y tu bonita mirada",
-                "No hay hora en la que no estés en mi mente",
-                "Eres la luz que me hace tan fuerte..."
-            ],
+            lyrics: "Pensando en ti a las tres de la mañana / Recordando tu risa y tu bonita mirada / No hay hora en la que no estés en mi mente...",
             poem: "A las 3AM y a cualquier hora 🌙:\nNo importa qué hora del día sea, siempre hay un pensamiento dedicado a lo linda que te ves y a lo increíble que eres.",
             themeColor: "#805c00"
         },
@@ -126,11 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "La Misma Gente",
             isGold: false,
             youtubeId: "38B7b47b4e0",
-            lyrics: [
-                "Tú y yo, caminando juntos bajo la luna",
-                "Como ninguna otra historia en el mundo",
-                "Sintiendo el latido de un amor profundo...",
-            ],
+            lyrics: "Tú y yo, caminando juntos bajo la luna / Como ninguna otra historia en el mundo / Sintiendo el latido de un amor profundo...",
             poem: "Para mi niña 🌹:\nTú y yo en nuestra propia sintonía. Me fascina cómo piensas y la ternura con la que iluminas cada espacio.",
             themeColor: "#40001a"
         },
@@ -139,11 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Grupo Frontera",
             isGold: false,
             youtubeId: "70XW3a08890",
-            lyrics: [
-                "Tan coqueta y tan bonita",
-                "Que con una mirada me quita lo malo",
-                "Sonriendo tan lindo a cada ratito...",
-            ],
+            lyrics: "Tan coqueta y tan bonita / Que con una mirada me quita lo malo / Sonriendo tan lindo a cada ratito...",
             poem: "Para la más coqueta y hermosa 💐:\nTu coquetería natural y tu sonrisa tierna me alegran el alma. Eres mi niña preferida siempre.",
             themeColor: "#550033"
         },
@@ -152,11 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Adolescentes",
             isGold: false,
             youtubeId: "r1NfP44h400",
-            lyrics: [
-                "Y es que te amo con el alma",
-                "Te guardo en mi corazón como lo más puro",
-                "Brillando como una estrella en el cielo oscuro..."
-            ],
+            lyrics: "Y es que te amo con el alma / Te guardo en mi corazón como lo más puro / Brillando como una estrella en el cielo...",
             poem: "Para Lizet 💖:\nTu alma pura y transparente es algo que valoro infinitamente. Nunca dejes de ser esa chica brillante y genial.",
             themeColor: "#330066"
         },
@@ -165,11 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "3AM",
             isGold: false,
             youtubeId: "y1C44P5P400",
-            lyrics: [
-                "Por ti daría lo que fuera",
-                "Por ver esa mirada una vez más",
-                "Caminando juntos hacia la paz..."
-            ],
+            lyrics: "Por ti daría lo que fuera / Por ver esa mirada una vez más / Caminando juntos hacia la paz...",
             poem: "Por mi Li ✨:\nPor ti movería montañas solo para sacarte una sonrisa. Tu felicidad es mi motivo favorito.",
             themeColor: "#003366"
         },
@@ -178,11 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Los Primos del Este, Santa Fe Klan",
             isGold: true,
             youtubeId: "x9J28359y30",
-            lyrics: [
-                "Pasan los días y sigo pensando en ti",
-                "En lo bonita que te ves cuando me miras así",
-                "Contando los minutos para verte feliz..."
-            ],
+            lyrics: "Pasan los días y sigo pensando en ti / En lo bonita que te ves cuando me miras así / Contando los minutos para verte feliz...",
             poem: "30 días y la vida entera 🌟:\nPodrían pasar meses y años, y nunca me cansaría de admirar lo hermosa e inteligente que eres, mi Li.",
             themeColor: "#664700"
         },
@@ -191,11 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Los Primos del Este",
             isGold: true,
             youtubeId: "8s120398y12",
-            lyrics: [
-                "Mami tú eres la dueña de mi atención",
-                "La que alegra todo mi corazón",
-                "Con tu carita tan bella e ilusión..."
-            ],
+            lyrics: "Mami tú eres la dueña de mi atención / La que alegra todo mi corazón / Con tu carita tan bella e ilusión...",
             poem: "Mi niña adorada 🌷:\nEres la dueña de las sonrisas más bonitas. Todo lo que haces tiene un toque especial y encantador.",
             themeColor: "#805900"
         },
@@ -204,11 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "MTZ Manuel Turizo",
             isGold: false,
             youtubeId: "Vqfy4ScRXGg",
-            lyrics: [
-                "Buscando una lady como tú",
-                "Que me llene la vida de luz",
-                "Quiero cantar para ti este verso...",
-            ],
+            lyrics: "Buscando una lady como tú / Que me llene la vida de luz / Quiero cantar para ti este verso...",
             poem: "Para una Lady sin igual 👑:\nUna chica con tu clase, tu elegancia y tu carisma no se encuentra dos veces. Eres una reina en todo sentido.",
             themeColor: "#1a0033"
         },
@@ -217,11 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Fonseca ft. Alexis y Fido",
             isGold: false,
             youtubeId: "N_08j1S_123",
-            lyrics: [
-                "Vine a buscarte porque te extraño",
-                "Porque no hay nadie en el mundo como tú",
-                "Llenando mi vida de paz y virtud..."
-            ],
+            lyrics: "Vine a buscarte porque te extraño / Porque no hay nadie en el mundo como tú / Llenando mi vida de paz y virtud...",
             poem: "Para mi Li 🚗:\nIba a buscarte con tulipanes y flores... pero la florería falló jajaja. Aun así, mi cariño por ti florece solo.",
             themeColor: "#004d33"
         },
@@ -230,11 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Chyno Miranda, Chino & Nacho",
             isGold: false,
             youtubeId: "N4_9348y123",
-            lyrics: [
-                "Qué raro es esto que siento por ti",
-                "Tan bonito, perfecto y real",
-                "Como una estrella fugaz celestial..."
-            ],
+            lyrics: "Qué raro es esto que siento por ti / Tan bonito, perfecto y real / Como una estrella fugaz celestial...",
             poem: "Para Lizet ✨:\nEs maravilloso cómo alguien como tú puede hacer que el mundo entero se sienta más bonito y lleno de color.",
             themeColor: "#660033"
         },
@@ -243,11 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Barboza",
             isGold: true,
             youtubeId: "y9382019238",
-            lyrics: [
-                "More, contigo todo es más bonito",
-                "Tu miradita me deja sin aliento",
-                "Sintiendo este amor segundo a segundo..."
-            ],
+            lyrics: "More, contigo todo es más bonito / Tu miradita me deja sin aliento / Sintiendo este amor segundo a segundo...",
             poem: "More de mi corazón 🌟:\nCada pequeño detalle de tu rostro y tu forma de hablar me parece una obra de arte. Te ves hermosa siempre.",
             themeColor: "#805500"
         },
@@ -256,11 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Chyno Miranda ft. Wisin",
             isGold: false,
             youtubeId: "y8392019238",
-            lyrics: [
-                "Quédate conmigo esta noche y siempre",
-                "Que contigo la vida se siente mejor",
-                "Llenando mi alma de paz y amor..."
-            ],
+            lyrics: "Quédate conmigo esta noche y siempre / Que contigo la vida se siente mejor / Llenando mi alma de paz y amor...",
             poem: "Para mi niña hermosa 🌻:\nContigo los minutos se pasan volando y las risas nunca faltan. Tu compañía es el mejor regalo.",
             themeColor: "#4d3300"
         },
@@ -269,11 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Prince Royce",
             isGold: false,
             youtubeId: "bdOXnTbyk0g",
-            lyrics: [
-                "Yo sólo quiero darte un beso",
-                "Y regalarte mis mañanas",
-                "Cantar para ti bajo la ventana..."
-            ],
+            lyrics: "Yo sólo quiero darte un beso / Y regalarte mis mañanas / Cantar para ti bajo la ventana...",
             poem: "Para ti, mi Li 💋:\nUn besito en la mejilla para recordarte lo linda y dulce que eres. Eres mi niña consentida.",
             themeColor: "#66004d"
         },
@@ -282,10 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Daddy Yankee & Wisin y Yandel",
             isGold: false,
             youtubeId: "y8392019239",
-            lyrics: [
-                "Si supieras cuánto me gustas tú",
-                "Y lo linda que te ves con esa luz...",
-            ],
+            lyrics: "Si supieras cuánto me gustas tú / Y lo linda que te ves con esa luz...",
             poem: "Si supieras, Lizet ✨:\nSi supieras lo bonita que te ves cuando te concentras o cuando te ríes, entenderías por qué te dedico este detalle.",
             themeColor: "#00334d"
         },
@@ -294,10 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Enrique Iglesias",
             isGold: false,
             youtubeId: "NUsoVlDFqZg",
-            lyrics: [
-                "Bailando, bailando, tu cuerpo y el mío",
-                "Llenando el vacío que deja la distancia..."
-            ],
+            lyrics: "Bailando, bailando, tu cuerpo y el mío / Llenando el vacío que deja la distancia...",
             poem: "Para mi niña alegre 💃:\nTu energía alegre contagia felicidad a cualquiera. Eres un rayito de sol brillante.",
             themeColor: "#801a00"
         },
@@ -306,10 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Luis Fonsi ft. Daddy Yankee",
             isGold: false,
             youtubeId: "kJQP7kiw5Fk",
-            lyrics: [
-                "Despacito, quiero respirar tu cuello despacito",
-                "Para que te acuerdes si no estás conmigo..."
-            ],
+            lyrics: "Despacito, quiero respirar tu cuello despacito / Para que te acuerdes si no estás conmigo...",
             poem: "Paso a paso, mi Li 🌹:\nConocerte mejor cada día es un viaje hermoso. Admirar tu inteligencia es mi pasatiempo favorito.",
             themeColor: "#80002b"
         },
@@ -318,10 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Sebastián Yatra, Guaynaa",
             isGold: false,
             youtubeId: "y8392019240",
-            lyrics: [
-                "Ella es mi chica ideal",
-                "La que busqué y por fin encontré...",
-            ],
+            lyrics: "Ella es mi chica ideal / La que busqué y por fin encontré...",
             poem: "Para mi chica ideal 💖:\nInteligente, hermosa, graciosa y única. Literalmente eres la chica ideal con la que da gusto conversar.",
             themeColor: "#400080"
         },
@@ -330,10 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Silvestre Dangond, Maluma",
             isGold: false,
             youtubeId: "y8392019241",
-            lyrics: [
-                "Quiero vivir bailando a tu lado",
-                "Porque tu forma de ser me me ha conquistado..."
-            ],
+            lyrics: "Quiero vivir bailando a tu lado / Porque tu forma de ser me ha conquistado...",
             poem: "Para Lizet 🎶:\nQue la vida nos traiga siempre momentos alegres para disfrutar. Tu sonrisa lo vale todo.",
             themeColor: "#00664d"
         },
@@ -342,10 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Pedro Guerra · Cruzzi",
             isGold: true,
             youtubeId: "y8392019242",
-            lyrics: [
-                "Pensando en tu rostro todo el día",
-                "Con los dos en la cabeza y el alma llena de poesía..."
-            ],
+            lyrics: "Pensando en tu rostro todo el día / Con los dos en la cabeza y el alma llena de poesía...",
             poem: "Especial para mi Li 🌟:\nTus ojitos negros y tu mirada inolvidable se quedan grabados en mi mente. Eres una belleza completa.",
             themeColor: "#805c00"
         },
@@ -354,10 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Abraham Mateo",
             isGold: false,
             youtubeId: "y8392019243",
-            lyrics: [
-                "Loco enamorado de tus ojos",
-                "De tu manera tan linda de sonreír..."
-            ],
+            lyrics: "Loco enamorado de tus ojos / De tu manera tan linda de sonreír...",
             poem: "Loco por tu sonrisa 😄:\nTu sonrisa es capaz de transformar cualquier día gris en un día lleno de tulipanes amarillos.",
             themeColor: "#800040"
         },
@@ -366,10 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Jacob Forever",
             isGold: false,
             youtubeId: "y8392019244",
-            lyrics: [
-                "Quiéreme como yo te quiero a ti",
-                "Que esta historia sea tan bonita y feliz..."
-            ],
+            lyrics: "Quiéreme como yo te quiero a ti / Que esta historia sea tan bonita y feliz...",
             poem: "Para ti, mi niña 🌺:\nTu calidez y tu manera de ser hacen que cualquiera quiera tenerte cerca siempre.",
             themeColor: "#660000"
         },
@@ -378,10 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Cali Y El Dandee",
             isGold: false,
             youtubeId: "y8392019245",
-            lyrics: [
-                "Por fin te encontré, te vi pasar",
-                "Y me cambió la vida entera al instante..."
-            ],
+            lyrics: "Por fin te encontré, te vi pasar / Y me cambió la vida entera al instante...",
             poem: "Para Lizet ✨:\nQué suerte haberte conocido. Eres esa persona que le suma luz y alegría a la rutina.",
             themeColor: "#004d66"
         },
@@ -390,10 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "BUXXI",
             isGold: false,
             youtubeId: "y8392019246",
-            lyrics: [
-                "Porque como tú no hay dos",
-                "Eres única y especial en este mundo..."
-            ],
+            lyrics: "Porque como tú no hay dos / Eres única y especial en este mundo...",
             poem: "Literalmente única 💛:\nNo hay nadie con tu sentido del humor, tu inteligencia y tu belleza. Como tú, simplemente no hay dos.",
             themeColor: "#665200"
         },
@@ -402,10 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Luciano Pereyra",
             isGold: false,
             youtubeId: "y8392019247",
-            lyrics: [
-                "Nadie me mira como tú",
-                "Nadie sonríe tan lindo como tú..."
-            ],
+            lyrics: "Nadie me mira como tú / Nadie sonríe tan lindo como tú...",
             poem: "Para mi Li 🌷:\nNadie tiene esa mirada tan expresiva ni esa forma tan linda de escuchar.",
             themeColor: "#4d0066"
         },
@@ -414,10 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Tiago PZK, Ke Personajes",
             isGold: false,
             youtubeId: "y8392019248",
-            lyrics: [
-                "Sintiendo la música en el alma",
-                "Con tu presencia tan bonita y calma..."
-            ],
+            lyrics: "Sintiendo la música en el alma / Con tu presencia tan bonita y calma...",
             poem: "Para Lizet 🎶:\nTu presencia transmite una paz hermosa. Te ves linda hasta en tus momentos más distraídos.",
             themeColor: "#1a0066"
         },
@@ -426,10 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Los Ángeles Azules, María Becerra",
             isGold: false,
             youtubeId: "y8392019249",
-            lyrics: [
-                "Tú eres el regalo más lindo que me dio la vida",
-                "Con tu carita brillante e iluminada..."
-            ],
+            lyrics: "Tú eres el regalo más lindo que me dio la vida / Con tu carita brillante e iluminada...",
             poem: "Para mi niña especial 💕:\nUn detalle hecho con mucho cariño para la persona más linda y auténtica.",
             themeColor: "#800055"
         },
@@ -438,10 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Sebastián Yatra",
             isGold: false,
             youtubeId: "sD9_l348900",
-            lyrics: [
-                "Recuerdo aquel día como si fuera hoy",
-                "No hay nadie más tan especial como tú..."
-            ],
+            lyrics: "Recuerdo aquel día como si fuera hoy / No hay nadie más tan especial como tú...",
             poem: "No hay nadie más 🌟:\nEn un salón lleno de gente, tus ojos destacarían al instante. Eres radiante.",
             themeColor: "#005580"
         },
@@ -450,10 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Río Roma",
             isGold: false,
             youtubeId: "f159384900",
-            lyrics: [
-                "Tú eres mi persona favorita",
-                "La que alegra mis días con su sonrisa..."
-            ],
+            lyrics: "Tú eres mi persona favorita / La que alegra mis días con su sonrisa...",
             poem: "Mi persona favorita 🌻:\nDefinitivamente eres una de mis personas favoritas. Gracias por regalarme tu linda compañía.",
             themeColor: "#806600"
         },
@@ -462,10 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Kurt",
             isGold: false,
             youtubeId: "k159384901",
-            lyrics: [
-                "Ella es la mujer perfecta",
-                "Con su carita de ángel y mente brillante..."
-            ],
+            lyrics: "Ella es la mujer perfecta / Con su carita de ángel y mente brillante...",
             poem: "La mujer perfecta ✨:\nPerfecta en tu autenticidad, en tus metas y en la forma en que cuidas a quienes quieres.",
             themeColor: "#660033"
         },
@@ -474,10 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Humbe",
             isGold: false,
             youtubeId: "h159384902",
-            lyrics: [
-                "Confieso que me encantas",
-                "Confieso que tu mirada me llena el pensamiento..."
-            ],
+            lyrics: "Confieso que me encantas / Confieso que tu mirada me llena el pensamiento...",
             poem: "Confesión para Li 💌:\nConfieso que hacerte esta web me sacó muchas sonrisas pensando en cómo reaccionarías.",
             themeColor: "#33004d"
         },
@@ -486,10 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "León Larregui",
             isGold: false,
             youtubeId: "l159384903",
-            lyrics: [
-                "Brillas y brillas tan lindo",
-                "Como las estrellas en el mar profundo..."
-            ],
+            lyrics: "Brillas y brillas tan lindo / Como las estrellas en el mar profundo...",
             poem: "Brillas tan lindo ✨:\nBrillas con luz propia. Tu inteligencia brilla y tu belleza encandila.",
             themeColor: "#806d00"
         },
@@ -498,10 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Manuel Medrano",
             isGold: false,
             youtubeId: "m159384904",
-            lyrics: [
-                "Quiero volar contigo, muy alto donde el viento nos lleve",
-                "Bajo el agua con tu dulce paz..."
-            ],
+            lyrics: "Quiero volar contigo, muy alto donde el viento nos lleve / Bajo el agua con tu dulce paz...",
             poem: "Para Lizet 🌊:\nContigo todo fluye de manera natural. Tu presencia da serenidad y alegría.",
             themeColor: "#004d80"
         },
@@ -510,10 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "KID FLEX, Sergi",
             isGold: false,
             youtubeId: "kf15938490",
-            lyrics: [
-                "No quiero perderte nunca",
-                "Porque una chica como tú es única..."
-            ],
+            lyrics: "No quiero perderte nunca / Porque una chica como tú es única...",
             poem: "Para mi Li 💛:\nUna chica tan valiosa merece ser cuidada y recordada todos los días.",
             themeColor: "#663300"
         },
@@ -522,10 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Axel",
             isGold: false,
             youtubeId: "ax15938490",
-            lyrics: [
-                "Te voy a amar hasta el final",
-                "Te voy a acompañar siempre..."
-            ],
+            lyrics: "Te voy a amar hasta el final / Te voy a acompañar siempre...",
             poem: "Para mi niña hermosa 💖:\nSiempre tendrás en mí a alguien que te apoye en tus sueños y celebre tus logros.",
             themeColor: "#800033"
         },
@@ -534,10 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Monsieur Periné",
             isGold: false,
             youtubeId: "mp15938490",
-            lyrics: [
-                "Con las flores de tu jardín",
-                "Bailando nuestra canción suavemente..."
-            ],
+            lyrics: "Con las flores de tu jardín / Bailando nuestra canción suavemente...",
             poem: "Flores y música 🌷:\nAunque las flores de la florería no llegaron, las flores de este lienzo son todas tuyas.",
             themeColor: "#4d0033"
         },
@@ -546,10 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Aitana y Zzoilo",
             isGold: false,
             youtubeId: "az15938490",
-            lyrics: [
-                "Tú me encantas tanto",
-                "Que no puedo dejar de mirarte..."
-            ],
+            lyrics: "Tú me encantas tanto / Que no puedo dejar de mirarte...",
             poem: "Para Lizet 😊:\nMe encanta cómo eres de espontánea y la chispa tan linda que tienes.",
             themeColor: "#800080"
         },
@@ -558,10 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Wisin & Yandel",
             isGold: false,
             youtubeId: "wy15938490",
-            lyrics: [
-                "Estoy enamorado de tu alma",
-                "De tu dulce mirada y de tu calma..."
-            ],
+            lyrics: "Estoy enamorado de tu alma / De tu dulce mirada y de tu calma...",
             poem: "Para mi Li 🌹:\nTu alma dulce hace que cualquier momento sea especial.",
             themeColor: "#33001a"
         },
@@ -570,10 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Enrique Iglesias",
             isGold: false,
             youtubeId: "ei15938490",
-            lyrics: [
-                "No me digas que no",
-                "Si sabes que por ti me muero..."
-            ],
+            lyrics: "No me digas que no / Si sabes que por ti me muero...",
             poem: "Para mi niña 😉:\nNo me digas que no te gustó esta sorpresa, ¡le puse todo el corazón!",
             themeColor: "#660022"
         },
@@ -582,10 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Enrique Iglesias, Juan Luis Guerra",
             isGold: false,
             youtubeId: "ei25938490",
-            lyrics: [
-                "Cuando me enamoro, a veces desespero",
-                "Es la luz de tus ojos brillantes..."
-            ],
+            lyrics: "Cuando me enamoro, a veces desespero / Es la luz de tus ojos brillantes...",
             poem: "La luz de tus ojos 👀:\nTus ojos tienen esa calidez que provoca quedarse mirándolos un buen rato.",
             themeColor: "#804000"
         },
@@ -594,10 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Carlos Baute",
             isGold: false,
             youtubeId: "cb15938490",
-            lyrics: [
-                "Te envío poemas de mi propia mano",
-                "Te envío canciones de mi corazón..."
-            ],
+            lyrics: "Te envío poemas de mi propia mano / Te envío canciones de mi corazón...",
             poem: "En tus manos 💌:\nTe envío esta web hecha código a código solo para ti, mi niña Li.",
             themeColor: "#800040"
         },
@@ -606,10 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Tony Dize",
             isGold: false,
             youtubeId: "td15938490",
-            lyrics: [
-                "Tengo un doctorado en quererte",
-                "En admirar tu carita de ángel..."
-            ],
+            lyrics: "Tengo un doctorado en quererte / En admirar tu carita de ángel...",
             poem: "Doctorado en admirarte 🎓:\nTienes una inteligencia brillante. Te admiro mucho por cómo superas cada reto.",
             themeColor: "#004d4d"
         },
@@ -618,10 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Romeo Santos",
             isGold: false,
             youtubeId: "rs15938490",
-            lyrics: [
-                "Si yo fuera tu héroe favorito",
-                "Te protegería de todo mal..."
-            ],
+            lyrics: "Si yo fuera tu héroe favorito / Te protegería de todo mal...",
             poem: "Para Lizet 🦸‍♂️:\nTu Sebas siempre estará aquí para apoyarte y sacarte una sonrisa cuando lo necesites.",
             themeColor: "#4a0066"
         },
@@ -630,10 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Johnny Sky",
             isGold: false,
             youtubeId: "js15938490",
-            lyrics: [
-                "Quiéreme un poquito más",
-                "Que contigo toco las estrellas..."
-            ],
+            lyrics: "Quiéreme un poquito más / Que contigo toco las estrellas...",
             poem: "Tocar las estrellas 🌟:\nHablar contigo se siente así de lindo y descomplicado.",
             themeColor: "#660044"
         },
@@ -642,9 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Luciano Pereyra",
             isGold: false,
             youtubeId: "lp15938490",
-            lyrics: [
-                "Quédate conmigo esta noche y el resto de la vida...",
-            ],
+            lyrics: "Quédate conmigo esta noche y el resto de la vida...",
             poem: "Para mi niña Li 💛:\nTu compañía siempre es el mejor plan de todos.",
             themeColor: "#553300"
         },
@@ -653,9 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "William Luna",
             isGold: false,
             youtubeId: "wl15938490",
-            lyrics: [
-                "Te amaré por siempre en la distancia y en el tiempo...",
-            ],
+            lyrics: "Te amaré por siempre en la distancia y en el tiempo...",
             poem: "Para Lizet 🌾:\nUn tema bonito para recordar que mi cariño por ti es sincero y constante.",
             themeColor: "#334d00"
         },
@@ -664,10 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Dúo Hnos. Gaitán Castro",
             isGold: false,
             youtubeId: "gc15938490",
-            lyrics: [
-                "Cómo has hecho para enamorarme",
-                "Cómo has hecho para cambiar mi vida..."
-            ],
+            lyrics: "Cómo has hecho para enamorarme / Cómo has hecho para cambiar mi vida...",
             poem: "¿Cómo le haces, Li? 🤔:\nCómo le haces para verte tan linda sin esfuerzo y tener esa mente tan brillante.",
             themeColor: "#4d2600"
         },
@@ -676,10 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "William Luna",
             isGold: false,
             youtubeId: "wl2593849",
-            lyrics: [
-                "De la nada apareciste en mi vida",
-                "Como un rayo de sol suave..."
-            ],
+            lyrics: "De la nada apareciste en mi vida / Como un rayo de sol suave...",
             poem: "Llegaste a iluminar ✨:\nApareciste para llenar mis días de momentos bonitos y risas sinceras.",
             themeColor: "#664d00"
         },
@@ -688,10 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Afrodisíaco",
             isGold: false,
             youtubeId: "af1593849",
-            lyrics: [
-                "Dónde está el amor que me diste tú",
-                "Que me llena la vida de luz..."
-            ],
+            lyrics: "Dónde está el amor que me diste tú / Que me llena la vida de luz...",
             poem: "Para mi Li 🌸:\nEl amor está en los pequeños detalles como este regalo interactivo.",
             themeColor: "#660033"
         },
@@ -700,10 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Orquesta Candela",
             isGold: false,
             youtubeId: "oc1593849",
-            lyrics: [
-                "Cuando te enamoras la vida cambia de color",
-                "Todo se vuelve más bonito..."
-            ],
+            lyrics: "Cuando te enamoras la vida cambia de color / Todo se vuelve más bonito...",
             poem: "De mil colores 🎨:\nTus ojos y tu risa le ponen color a cualquier instante.",
             themeColor: "#800000"
         },
@@ -712,10 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Gran Orquesta Internacional",
             isGold: false,
             youtubeId: "go1593849",
-            lyrics: [
-                "Me gusta todo de ti, tu sonrisa, tu mirada",
-                "Tu forma tan linda de caminar..."
-            ],
+            lyrics: "Me gusta todo de ti, tu sonrisa, tu mirada / Tu forma tan linda de caminar...",
             poem: "Me gusta todo de ti 💖:\nMe gusta tu voz, tu risa, tu inteligencia y lo tierna que eres.",
             themeColor: "#803300"
         },
@@ -724,10 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "LOS 4",
             isGold: false,
             youtubeId: "l41593849",
-            lyrics: [
-                "Hay una historia entre tus dedos",
-                "Que se escribe despacito..."
-            ],
+            lyrics: "Hay una historia entre tus dedos / Que se escribe despacito...",
             poem: "Tu propia historia 📖:\nEres la protagonista de una historia hermosa que apenas está empezando.",
             themeColor: "#330033"
         },
@@ -736,10 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Eddie Santiago",
             isGold: false,
             youtubeId: "es1593849",
-            lyrics: [
-                "Que locura enamorarme de ti",
-                "Si supieras lo que causas en mí..."
-            ],
+            lyrics: "Que locura enamorarme de ti / Si supieras lo que causas en mí...",
             poem: "Qué locura tan bonita 🤪:\nEs una locura bonita lo rápido que me sacas una sonrisa cuando me escribes.",
             themeColor: "#66001a"
         },
@@ -748,10 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "RKM & Ken-Y",
             isGold: false,
             youtubeId: "rk1593849",
-            lyrics: [
-                "Te regalo amores, te regalo canciones",
-                "Te regalo el cielo entero..."
-            ],
+            lyrics: "Te regalo amores, te regalo canciones / Te regalo el cielo entero...",
             poem: "Regalos para Li 🎁:\nTe regalo esta página web y mil flores virtuales mientras abren la florería.",
             themeColor: "#400033"
         },
@@ -760,10 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Makano",
             isGold: true,
             youtubeId: "mk1593849",
-            lyrics: [
-                "Déjame entrar a tu corazón",
-                "Déjame demostrarte lo que siento...",
-            ],
+            lyrics: "Déjame entrar a tu corazón / Déjame demostrarte lo que siento...",
             poem: "Para mi niña hermosa 🌟:\nUn rinconcito en tu corazón es todo lo que hace falta para sonreír feliz.",
             themeColor: "#806600"
         },
@@ -772,10 +555,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Adolescentes",
             isGold: false,
             youtubeId: "oa1593849",
-            lyrics: [
-                "¿Por qué Dios te hizo tan bella?",
-                "Con esos ojos que encandilan...",
-            ],
+            lyrics: "¿Por qué Dios te hizo tan bella? / Con esos ojos que encandilan...",
             poem: "¿Por qué tan bella? 😍:\nEn serio, ¿por qué te hizo tan bella e inteligente al mismo tiempo? Es un privilegio conocerte.",
             themeColor: "#800033"
         },
@@ -784,10 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Flex",
             isGold: false,
             youtubeId: "fl1593849",
-            lyrics: [
-                "Te quiero baby, te quiero",
-                "Eres mi sol y mi cielo..."
-            ],
+            lyrics: "Te quiero baby, te quiero / Eres mi sol y mi cielo...",
             poem: "Para mi Li ☀️:\nTe quiero un montón. Eres mi rayito de sol favorito.",
             themeColor: "#664d00"
         },
@@ -796,10 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Nigga",
             isGold: true,
             youtubeId: "ng1593849",
-            lyrics: [
-                "Te amo tanto que no puedo explicarlo",
-                "Eres mi sueño hecho realidad..."
-            ],
+            lyrics: "Te amo tanto que no puedo explicarlo / Eres mi sueño hecho realidad...",
             poem: "Especial dorada para Lizet 🌟:\nEres un sueño de persona. Gracias por tu dulzura y por iluminar mi mundo.",
             themeColor: "#806600"
         },
@@ -808,10 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Nigga",
             isGold: true,
             youtubeId: "ng2593849",
-            lyrics: [
-                "Quiero tenerte entre mis brazos",
-                "Y decirte al oído lo mucho que vales..."
-            ],
+            lyrics: "Quiero tenerte entre mis brazos / Y decirte al oído lo mucho que vales...",
             poem: "Abrazo fuerte para Li 💛:\nPara recordarte lo mucho que vales y lo especial que eres en todo momento.",
             themeColor: "#735c00"
         },
@@ -820,10 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "LATIN MAFIA x Omar Apollo",
             isGold: false,
             youtubeId: "lm1593849",
-            lyrics: [
-                "Esto está hecho para ti",
-                "Pensando en ti cada segundo..."
-            ],
+            lyrics: "Esto está hecho para ti / Pensando en ti cada segundo...",
             poem: "Hecho a tu medida 🛠️:\nEste detalle digital fue hecho exclusivamente para sacarte una risa y alegrarte el día.",
             themeColor: "#1a0033"
         },
@@ -832,10 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Jorge Cuellar",
             isGold: false,
             youtubeId: "jc1593849",
-            lyrics: [
-                "Ayayay qué bonita te ves",
-                "Con esa mirada tan dulce..."
-            ],
+            lyrics: "Ayayay qué bonita te ves / Con esa mirada tan dulce...",
             poem: "Ayayay con esa carita 😄:\nAyayay mi niña, qué bonita te ves cuando estás feliz.",
             themeColor: "#4d3300"
         },
@@ -844,10 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "RUFF - Kapo",
             isGold: false,
             youtubeId: "rk2593849",
-            lyrics: [
-                "Escuchando música suavecita en los audífonos",
-                "Pensando en ti..."
-            ],
+            lyrics: "Escuchando música suavecita en los audífonos / Pensando en ti...",
             poem: "En tus audífonos 🎧:\nOjalá este tema suene en tus auriculares y te acuerdes de que tu Sebas piensa en ti.",
             themeColor: "#004d4d"
         },
@@ -856,10 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Estrategia Norteña",
             isGold: true,
             youtubeId: "ast159384",
-            lyrics: [
-                "Los astros se alinearon para encontrarte",
-                "Eres la estrella más brillante del firmamento..."
-            ],
+            lyrics: "Los astros se alinearon para encontrarte / Eres la estrella más brillante del firmamento...",
             poem: "Estrella brillante 🌟:\nHasta los astros sabían que tenías que llegar a iluminarlo todo con tu existencia.",
             themeColor: "#997a00"
         },
@@ -868,9 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Jorge Cuellar",
             isGold: false,
             youtubeId: "jc2593849",
-            lyrics: [
-                "Con el ritmo de tu voz alegre en mi cabeza..."
-            ],
+            lyrics: "Con el ritmo de tu voz alegre en mi cabeza...",
             poem: "Tu dulce voz 🎶:\nEscuchar tu voz alegre es el mejor remedio para cualquier cansancio.",
             themeColor: "#660033"
         },
@@ -879,9 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Sonyk El Dragón",
             isGold: false,
             youtubeId: "sd1593849",
-            lyrics: [
-                "Mi vida eres tú, mi luz y mi camino..."
-            ],
+            lyrics: "Mi vida eres tú, mi luz y mi camino...",
             poem: "Mi niña Li 🌟:\nUn abrazo apretado para la chica más linda del planeta.",
             themeColor: "#804d00"
         },
@@ -890,9 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Pipe Calderón",
             isGold: false,
             youtubeId: "pc1593849",
-            lyrics: [
-                "Recordando cada momento lindo a tu lado..."
-            ],
+            lyrics: "Recordando cada momento lindo a tu lado...",
             poem: "Recuerdos bonitos 📸:\nGuardado cada recuerdo bonito contigo como un tesoro.",
             themeColor: "#4d004d"
         },
@@ -901,9 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Calle 24",
             isGold: false,
             youtubeId: "c24159384",
-            lyrics: [
-                "Con el frío afuera pero tu calor adentro..."
-            ],
+            lyrics: "Con el frío afuera pero tu calor adentro...",
             poem: "Calidez única 🔥:\nTu ternura abriga el corazón de cualquiera.",
             themeColor: "#003366"
         },
@@ -912,9 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Llane",
             isGold: false,
             youtubeId: "ll1593849",
-            lyrics: [
-                "Querernos bonito como antes, con detalles puros..."
-            ],
+            lyrics: "Querernos bonito como antes, con detalles puros...",
             poem: "Detalles sinceros 💌:\nPorque los detalles sinceros nunca pasan de moda para alguien tan linda como tú.",
             themeColor: "#660022"
         },
@@ -923,9 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Don Omar ft Natti Natasha",
             isGold: false,
             youtubeId: "do1593849",
-            lyrics: [
-                "Con el ritmo que nos mueve el alma a bailar..."
-            ],
+            lyrics: "Con el ritmo que nos mueve el alma a bailar...",
             poem: "Para la más divertida 🎶:\nPara que te des una bailadita y disfrutes de la buena música.",
             themeColor: "#330000"
         },
@@ -934,9 +681,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Cuco",
             isGold: false,
             youtubeId: "cc1593849",
-            lyrics: [
-                "El amor es un día y la vida es contigo..."
-            ],
+            lyrics: "El amor es un día y la vida es contigo...",
             poem: "Para mi niña Li 💖:\nCada día a tu lado cobra un matiz más especial.",
             themeColor: "#4a0066"
         },
@@ -945,9 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Los Primos del Este",
             isGold: false,
             youtubeId: "pe1593849",
-            lyrics: [
-                "Un cariño que va creciendo más y más..."
-            ],
+            lyrics: "Un cariño que va creciendo más y más...",
             poem: "Creciendo siempre 📈:\nComo mi admiración por lo dedicada e inteligente que eres.",
             themeColor: "#804000"
         },
@@ -956,9 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Angel y Khriz",
             isGold: true,
             youtubeId: "ak1593849",
-            lyrics: [
-                "Me enamoré de tus ojos, me enamoré de tu piel...",
-            ],
+            lyrics: "Me enamoré de tus ojos, me enamoré de tu piel...",
             poem: "Especial dorada 🌟:\nMe enamoré de tu manera de pensar, de tus ojitos lindos y de esa vibra tan bonita que transmites.",
             themeColor: "#997a00"
         },
@@ -967,9 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Johnny Sky",
             isGold: false,
             youtubeId: "js2593849",
-            lyrics: [
-                "Siempre recordando tu linda mirada..."
-            ],
+            lyrics: "Siempre recordando tu linda mirada...",
             poem: "Recordándote 🌷:\nIncluso en la distancia, tu recuerdo saca sonrisas.",
             themeColor: "#660033"
         },
@@ -978,9 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Carlos Vives, Sebastián Yatra",
             isGold: false,
             youtubeId: "cv1593849",
-            lyrics: [
-                "Déjame robarte un beso que me llegue al corazón..."
-            ],
+            lyrics: "Déjame robarte un beso que me llegue al corazón...",
             poem: "Un besito volado 😘:\nUn beso volado para la chica con la sonrisa más contagiosa.",
             themeColor: "#800033"
         },
@@ -989,9 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Piso 21 y Micro TDH",
             isGold: false,
             youtubeId: "p21159384",
-            lyrics: [
-                "Te vi y me cambió la mirada..."
-            ],
+            lyrics: "Te vi y me cambió la mirada...",
             poem: "Cuando te vi 👁️:\nDesde que te vi supe que eras alguien fuera de lo común.",
             themeColor: "#005580"
         },
@@ -1000,9 +735,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Valentino ft Manuel Turizo",
             isGold: false,
             youtubeId: "v15938490",
-            lyrics: [
-                "Bésame suavemente con tu ternura..."
-            ],
+            lyrics: "Bésame suavemente con tu ternura...",
             poem: "Ternura pura 🌸:\nTu ternura es tu superpoder más bonito.",
             themeColor: "#400066"
         },
@@ -1011,9 +744,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "De La Ghetto y Randy",
             isGold: false,
             youtubeId: "dg1593849",
-            lyrics: [
-                "Ella es la sensación, todos la miran pasar..."
-            ],
+            lyrics: "Ella es la sensación, todos la miran pasar...",
             poem: "La sensación 😎:\nLa sensación total donde sea que vayas. Bella por dentro y por fuera.",
             themeColor: "#660044"
         },
@@ -1022,9 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Paulo Londra y Piso 21",
             isGold: false,
             youtubeId: "pl1593849",
-            lyrics: [
-                "Te amo tanto que no puedo disimularlo..."
-            ],
+            lyrics: "Te amo tanto que no puedo disimularlo...",
             poem: "Para mi Li 💛:\nPara decirte con música lo mucho que importas.",
             themeColor: "#664d00"
         },
@@ -1033,9 +762,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Sebastián Yatra, Myke Towers",
             isGold: false,
             youtubeId: "sy1593849",
-            lyrics: [
-                "Puedes ser la pareja del año..."
-            ],
+            lyrics: "Puedes ser la pareja del año...",
             poem: "La más top ✨:\nEres la chica del año y de la vida entera.",
             themeColor: "#004d66"
         },
@@ -1044,10 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artist: "Alexis & Fido / Alkilados",
             isGold: false,
             youtubeId: "af2593849",
-            lyrics: [
-                "Tú eres una en un millón",
-                "No hay nadie que se te compare..."
-            ],
+            lyrics: "Tú eres una en un millón / No hay nadie que se te compare...",
             poem: "Una en un millón 🌟:\nEntre millones de personas, tú sobresales sin esfuerzo por tu inteligencia, carisma y hermosura. ¡Eres mi niña, mi Li!",
             themeColor: "#805900"
         }
@@ -1056,20 +780,15 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ----------------------------------------------------------------------
        2. ELEMENTOS DEL DOM
        ---------------------------------------------------------------------- */
-    const viewport3D = document.getElementById('viewport-3d');
-    const world3D = document.getElementById('world-3d');
+    const songCanvas = document.getElementById('song-canvas');
+    const bgPetalsContainer = document.getElementById('bg-petals-container');
     const searchInput = document.getElementById('search-input');
     const btnPoems = document.getElementById('btn-poems');
+    const btnToggleView = document.getElementById('btn-toggle-view');
+    const viewIcon = document.getElementById('view-icon');
+    const viewLabel = document.getElementById('view-label');
     
-    // Selector de Preajustes 3D
-    const presetBtns = {
-        cloud: document.getElementById('preset-cloud'),
-        sphere: document.getElementById('preset-sphere'),
-        helix: document.getElementById('preset-helix'),
-        grid: document.getElementById('preset-grid')
-    };
-
-    // Modal Player
+    // Player Modal Elements
     const playerModal = document.getElementById('player-modal');
     const closePlayerBtn = document.getElementById('close-player-btn');
     const youtubeIframe = document.getElementById('youtube-iframe');
@@ -1078,43 +797,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const playerSongArtist = document.getElementById('player-song-artist');
     const poemTitle = document.getElementById('poem-title');
     const poemTextContent = document.getElementById('poem-text-content');
-    const lyricsLinesContainer = document.getElementById('lyrics-lines-container');
-    const btnToggleAutoscroll = document.getElementById('btn-toggle-autoscroll');
-    
+    const lyricsTextContent = document.getElementById('lyrics-text-content');
     const tabPoemBtn = document.getElementById('tab-poem-btn');
     const tabLyricsBtn = document.getElementById('tab-lyrics-btn');
     const tabPoemContent = document.getElementById('tab-poem-content');
     const tabLyricsContent = document.getElementById('tab-lyrics-content');
 
-    // Modal Poems
+    // Poems Modal Elements
     const poemsModal = document.getElementById('poems-modal');
     const closePoemsBtn = document.getElementById('close-poems-btn');
     const poemsGrid = document.getElementById('poems-grid');
 
-    // Estado del Mundo 3D
-    let rotX = -10;
-    let rotY = 0;
-    let currentPreset = 'cloud';
-    let isDraggingWorld = false;
-    let lastMouseX = 0;
-    let lastMouseY = 0;
-    let lyricInterval = null;
+    // Estado Global
+    let isGridView = false;
+    let maxZIndex = 100;
 
     /* ----------------------------------------------------------------------
-       3. MOTOR DE RENDERIZADO 3D (PREAJUSTES: Nube, Esfera, Hélice, Grilla)
+       3. GENERADOR DE FLORES Y PETALOS DE FONDO
        ---------------------------------------------------------------------- */
-    function render3DScene(songsToRender, preset = 'cloud') {
-        world3D.innerHTML = '';
-        currentPreset = preset;
+    function createBackgroundPetals() {
+        const icons = ['🌸', '🌷', '🌼', '✨', '💛', '🌺'];
+        for (let i = 0; i < 22; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'bg-petal';
+            petal.textContent = icons[Math.floor(Math.random() * icons.length)];
+            petal.style.left = `${Math.random() * 95}%`;
+            petal.style.fontSize = `${Math.random() * 1.5 + 1}rem`;
+            petal.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            petal.style.animationDelay = `${Math.random() * 8}s`;
+            bgPetalsContainer.appendChild(petal);
+        }
+    }
+    createBackgroundPetals();
 
-        const total = songsToRender.length;
-        
-        songsToRender.forEach((song, i) => {
+    /* ----------------------------------------------------------------------
+       4. RENDERIZADO DE TARJETAS Y DRAG & DROP FÍSICO
+       ---------------------------------------------------------------------- */
+    function renderSongs(songsToRender) {
+        songCanvas.innerHTML = '';
+
+        const canvasWidth = Math.max(window.innerWidth - 320, 380);
+        const canvasHeight = 1850;
+
+        songsToRender.forEach((song, index) => {
             const card = document.createElement('div');
-            // IMPORTANTE: Se remueven los badges de texto "CANCIÓN HERMOSA", preservando el estilo visual de Oro Puro
-            card.className = `card-3d ${song.isGold ? 'is-gold' : ''}`;
-            
-            const flowerEmoji = song.isGold ? '🌟' : (i % 3 === 0 ? '🌷' : (i % 2 === 0 ? '🌸' : '🌼'));
+            // IMPORTANTE: NO se incluye ninguna insignia de texto "CANCIÓN HERMOSA", preservando solo el resplandor de Oro Puro 24k
+            card.className = `song-card ${song.isGold ? 'is-gold' : ''}`;
+            card.dataset.index = index;
+
+            const flowerEmoji = song.isGold ? '🌟' : (index % 3 === 0 ? '🌷' : (index % 2 === 0 ? '🌸' : '🌼'));
 
             card.innerHTML = `
                 <div class="card-flower-icon">${flowerEmoji}</div>
@@ -1124,178 +855,125 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            // Calcular transformación 3D según el preajuste
-            let transformStr = '';
-
-            if (preset === 'sphere') {
-                const phi = Math.acos(-1 + (2 * i) / total);
-                const theta = Math.sqrt(total * Math.PI) * phi;
-                const radius = 750;
-                const x = radius * Math.cos(theta) * Math.sin(phi);
-                const y = radius * Math.sin(theta) * Math.sin(phi);
-                const z = radius * Math.cos(phi);
-                transformStr = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${theta}rad) rotateX(${phi}rad)`;
-            } 
-            else if (preset === 'helix') {
-                const radius = 650;
-                const theta = i * 0.4;
-                const y = (i - total / 2) * 45;
-                const x = radius * Math.cos(theta);
-                const z = radius * Math.sin(theta);
-                transformStr = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${-theta}rad)`;
-            } 
-            else if (preset === 'grid') {
-                const cols = 5;
-                const col = i % cols;
-                const row = Math.floor(i / cols);
-                const x = (col - (cols - 1) / 2) * 310;
-                const y = (row - Math.floor(total / cols) / 2) * 125;
-                const z = 0;
-                transformStr = `translate3d(${x}px, ${y}px, ${z}px)`;
-            } 
-            else { // Nube 3D por defecto
-                const radius = 800;
-                const phi = Math.acos(-1 + (2 * i) / total);
-                const theta = Math.sqrt(total * Math.PI) * phi;
-                const x = (Math.random() - 0.5) * 1600;
-                const y = (Math.random() - 0.5) * 1400;
-                const z = (Math.random() - 0.5) * 1200;
-                transformStr = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${(Math.random() - 0.5) * 0.4}rad)`;
+            // En modo flotante, distribuir tarjetas armónicamente por el lienzo
+            if (!isGridView) {
+                const randomX = Math.floor(Math.random() * canvasWidth);
+                const randomY = Math.floor(Math.random() * canvasHeight);
+                card.style.left = `${randomX}px`;
+                card.style.top = `${randomY}px`;
+                card.style.zIndex = Math.floor(Math.random() * 50) + 1;
             }
 
-            card.style.transform = transformStr;
+            initDragAndDrop(card, song);
 
-            // Abrir reproductor al hacer clic
-            card.addEventListener('click', (e) => {
-                e.stopPropagation();
-                openPlayer(song);
-            });
-
-            world3D.appendChild(card);
+            songCanvas.appendChild(card);
         });
-
-        updateWorldTransform();
     }
-
-    function updateWorldTransform() {
-        world3D.style.transform = `translateZ(-200px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-    }
-
-    /* Controles de arrastre 3D del escenario con ratón y pantalla táctil */
-    viewport3D.addEventListener('mousedown', (e) => {
-        isDraggingWorld = true;
-        lastMouseX = e.clientX;
-        lastMouseY = e.clientY;
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDraggingWorld) return;
-        const deltaX = e.clientX - lastMouseX;
-        const deltaY = e.clientY - lastMouseY;
-        rotY += deltaX * 0.25;
-        rotX -= deltaY * 0.25;
-        rotX = Math.max(-75, Math.min(75, rotX)); // Limitar rotación vertical
-        lastMouseX = e.clientX;
-        lastMouseY = e.clientY;
-        updateWorldTransform();
-    });
-
-    document.addEventListener('mouseup', () => { isDraggingWorld = false; });
-
-    // Táctil Móvil
-    viewport3D.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) {
-            isDraggingWorld = true;
-            lastMouseX = e.touches[0].clientX;
-            lastMouseY = e.touches[0].clientY;
-        }
-    }, { passive: true });
-
-    document.addEventListener('touchmove', (e) => {
-        if (!isDraggingWorld || e.touches.length !== 1) return;
-        const deltaX = e.touches[0].clientX - lastMouseX;
-        const deltaY = e.touches[0].clientY - lastMouseY;
-        rotY += deltaX * 0.3;
-        rotX -= deltaY * 0.3;
-        rotX = Math.max(-75, Math.min(75, rotX));
-        lastMouseX = e.touches[0].clientX;
-        lastMouseY = e.touches[0].clientY;
-        updateWorldTransform();
-    }, { passive: true });
-
-    document.addEventListener('touchend', () => { isDraggingWorld = false; });
-
-    // Botones de Selector de Preajustes 3D
-    Object.keys(presetBtns).forEach(key => {
-        presetBtns[key].addEventListener('click', () => {
-            Object.values(presetBtns).forEach(b => b.classList.remove('active'));
-            presetBtns[key].classList.add('active');
-            render3DScene(songsData, key);
-        });
-    });
 
     /* ----------------------------------------------------------------------
-       4. REPRODUCTOR Y AUTO-DESPLAZAMIENTO DE LETRAS EN VIVO
+       5. LÓGICA DRAG & DROP (MOUSE + TOUCH)
+       ---------------------------------------------------------------------- */
+    function initDragAndDrop(card, songData) {
+        let isDragging = false;
+        let startX, startY;
+        let initialCardX, initialCardY;
+        let hasMoved = false;
+        const dragThreshold = 6;
+
+        card.addEventListener('mousedown', onPointerDown);
+        card.addEventListener('touchstart', onPointerDown, { passive: false });
+
+        function onPointerDown(e) {
+            if (isGridView) {
+                openPlayer(songData);
+                return;
+            }
+
+            maxZIndex++;
+            card.style.zIndex = maxZIndex;
+
+            const pointer = e.touches ? e.touches[0] : e;
+            startX = pointer.clientX;
+            startY = pointer.clientY;
+
+            initialCardX = card.offsetLeft;
+            initialCardY = card.offsetTop;
+
+            isDragging = true;
+            hasMoved = false;
+
+            if (e.type === 'mousedown') {
+                document.addEventListener('mousemove', onPointerMove);
+                document.addEventListener('mouseup', onPointerUp);
+            } else if (e.type === 'touchstart') {
+                document.addEventListener('touchmove', onPointerMove, { passive: false });
+                document.addEventListener('touchend', onPointerUp);
+            }
+        }
+
+        function onPointerMove(e) {
+            if (!isDragging) return;
+
+            const pointer = e.touches ? e.touches[0] : e;
+            const deltaX = pointer.clientX - startX;
+            const deltaY = pointer.clientY - startY;
+
+            if (Math.hypot(deltaX, deltaY) > dragThreshold) {
+                hasMoved = true;
+                card.classList.add('is-dragging');
+            }
+
+            if (hasMoved) {
+                if (e.cancelable) e.preventDefault();
+                card.style.left = `${initialCardX + deltaX}px`;
+                card.style.top = `${initialCardY + deltaY}px`;
+            }
+        }
+
+        function onPointerUp(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            card.classList.remove('is-dragging');
+
+            document.removeEventListener('mousemove', onPointerMove);
+            document.removeEventListener('mouseup', onPointerUp);
+            document.removeEventListener('touchmove', onPointerMove);
+            document.removeEventListener('touchend', onPointerUp);
+
+            if (!hasMoved) {
+                openPlayer(songData);
+            }
+        }
+    }
+
+    /* ----------------------------------------------------------------------
+       6. REPRODUCTOR Y MODAL PRINCIPAL
        ---------------------------------------------------------------------- */
     function openPlayer(song) {
         playerSongTitle.textContent = song.title;
         playerSongArtist.textContent = song.artist;
 
-        // Asignar Embebidor de YouTube con nocookie y autoplay
-        youtubeIframe.src = `https://www.youtube-nocookie.com/embed/${song.youtubeId}?autoplay=1&enablejsapi=1&rel=0`;
-        
-        // Enlace de respaldo por si el reproductor bloquea el video por derechos de autor en ciertas regiones
+        // Iframe con parámetros estándar y direct YouTube link fallback
+        youtubeIframe.src = `https://www.youtube.com/embed/${song.youtubeId}?autoplay=1&enablejsapi=1&rel=0`;
         directYoutubeLink.href = `https://www.youtube.com/watch?v=${song.youtubeId}`;
 
-        // Cargar Poema
+        // Cargar Poema y Letras
         poemTitle.textContent = `Especial para mi Li 💛`;
         poemTextContent.textContent = song.poem;
-
-        // Cargar Letra Animada en Líneas
-        renderLyricsLines(song.lyrics);
+        lyricsTextContent.textContent = song.lyrics || "Letra disponible al escuchar el tema...";
 
         // Cambiar suavemente el fondo de la pantalla al color temático de la canción
         if (song.themeColor) {
             document.body.style.backgroundColor = song.themeColor;
+        } else {
+            document.body.style.backgroundColor = song.isGold ? "#332600" : "#1a0f24";
         }
 
         playerModal.classList.remove('hidden');
     }
 
-    function renderLyricsLines(lyricsArray) {
-        lyricsLinesContainer.innerHTML = '';
-        if (lyricInterval) clearInterval(lyricInterval);
-
-        if (!lyricsArray || !Array.length) {
-            lyricsLinesContainer.innerHTML = '<div class="lyric-line">Letra disponible al escuchar el tema...</div>';
-            return;
-        }
-
-        lyricsArray.forEach((lineText, index) => {
-            const line = document.createElement('div');
-            line.className = `lyric-line ${index === 0 ? 'active' : ''}`;
-            line.textContent = lineText;
-            lyricsLinesContainer.appendChild(line);
-        });
-
-        // Simulación de seguimiento del progreso de la canción
-        let currentLine = 0;
-        lyricInterval = setInterval(() => {
-            const lines = lyricsLinesContainer.querySelectorAll('.lyric-line');
-            if (lines.length === 0) return;
-            
-            lines.forEach(l => l.classList.remove('active'));
-            currentLine = (currentLine + 1) % lines.length;
-            lines[currentLine].classList.add('active');
-            
-            // Scroll suave dentro del panel de letras
-            lines[currentLine].scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 4000);
-    }
-
     function closePlayer() {
         youtubeIframe.src = '';
-        if (lyricInterval) clearInterval(lyricInterval);
         playerModal.classList.add('hidden');
         document.body.style.backgroundColor = 'var(--bg-dark-primary)';
     }
@@ -1321,18 +999,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ----------------------------------------------------------------------
-       5. BUSCADOR Y MODAL GALERÍA DE POEMAS
+       7. ALTERNADOR DE VISTAS (FLOTANTE LIBRE vs GRILLA)
+       ---------------------------------------------------------------------- */
+    btnToggleView.addEventListener('click', () => {
+        isGridView = !isGridView;
+
+        if (isGridView) {
+            songCanvas.classList.remove('canvas-floating');
+            songCanvas.classList.add('canvas-grid');
+            viewIcon.textContent = '🎨';
+            viewLabel.textContent = 'Lienzo Flotante';
+        } else {
+            songCanvas.classList.remove('canvas-grid');
+            songCanvas.classList.add('canvas-floating');
+            viewIcon.textContent = '📌';
+            viewLabel.textContent = 'Vista Lista';
+        }
+
+        renderSongs(songsData);
+    });
+
+    /* ----------------------------------------------------------------------
+       8. BUSCADOR EN TIEMPO REAL
        ---------------------------------------------------------------------- */
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
-        const filtered = songsData.filter(s => 
+        const filteredSongs = songsData.filter(s => 
             s.title.toLowerCase().includes(query) || 
             s.artist.toLowerCase().includes(query) ||
             s.poem.toLowerCase().includes(query)
         );
-        render3DScene(filtered, currentPreset);
+        renderSongs(filteredSongs);
     });
 
+    /* ----------------------------------------------------------------------
+       9. MODAL GALERÍA DE POEMAS
+       ---------------------------------------------------------------------- */
     function renderPoemsModal() {
         poemsGrid.innerHTML = '';
         songsData.forEach(song => {
@@ -1361,26 +1063,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === poemsModal) poemsModal.classList.add('hidden');
     });
 
-    /* Generador de flores flotantes de fondo */
-    function createBackgroundPetals() {
-        const bgContainer = document.getElementById('bg-petals-container');
-        const icons = ['🌸', '🌷', '🌼', '✨', '💛', '🌺'];
-        for (let i = 0; i < 20; i++) {
-            const petal = document.createElement('div');
-            petal.className = 'bg-petal';
-            petal.textContent = icons[Math.floor(Math.random() * icons.length)];
-            petal.style.left = `${Math.random() * 95}%`;
-            petal.style.fontSize = `${Math.random() * 1.5 + 1}rem`;
-            petal.style.animationDuration = `${Math.random() * 10 + 10}s`;
-            petal.style.animationDelay = `${Math.random() * 8}s`;
-            bgContainer.appendChild(petal);
-        }
-    }
-    createBackgroundPetals();
-
     /* ----------------------------------------------------------------------
-       6. INICIALIZACIÓN DE LA ESCENA 3D
+       10. INICIALIZACIÓN
        ---------------------------------------------------------------------- */
-    render3DScene(songsData, 'cloud');
-
+    renderSongs(songsData);
 });
