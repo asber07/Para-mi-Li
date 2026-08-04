@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Lizet | Universo Musical 3D</title>
-    <meta name="description" content="Universo 3D interactivo repleto de música, poemas y amor para Lizet (mi niña, mi Li).">
+    <meta name="description" content="Universo 3D interactivo repleto de música y hermosos detalles para Lizet (mi niña, mi Li).">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,29 +64,30 @@
         </div>
     </header>
 
+    <!-- BANNER VISIBLE P.D. DE LAS FLORES (DESTACADO Y BIEN VISIBLE CON BOTÓN CERRAR) -->
+    <div id="prominent-ps-banner" class="ps-banner-visible">
+        <div class="ps-banner-content">
+            <span class="ps-flower-icon">🌸</span>
+            <p><strong>PD:</strong> Perdón por las flores, iban a llegar hoy, pero parece que será para otra fecha, ya que esa florería ni flores tiene jajajajaja... 💐💛</p>
+        </div>
+        <button id="close-ps-btn" class="ps-banner-close" aria-label="Cerrar aviso">&times;</button>
+    </div>
+
     <!-- Indicador Didáctico Elegante -->
     <div class="instructions-hint">
-        <p>Explora el universo 3D usando tu touchpad, mouse o dedo. Haz clic en cualquier canción para escucharla y leer su poema.</p>
+        <p>Explora el universo 3D usando tu touchpad, mouse o dedo. Haz clic en cualquier canción para escucharla y ver su poema.</p>
     </div>
 
     <!-- ESCENA PRINCIPAL TRIDIMENSIONAL (PERSPECTIVE 3D) -->
     <main id="container-3d">
         <div id="scene-3d">
             <div id="world-3d">
-                <!-- Se poblará dinámicamente con las tarjetas 3D -->
+                <!-- Se poblará dinámicamente con las tarjetas 3D doble cara -->
             </div>
         </div>
     </main>
 
-    <!-- Mensaje Discreto P.D. (Con botón de cerrar) -->
-    <aside id="discrete-ps-toast" class="ps-toast-container">
-        <button id="close-ps-btn" class="ps-close-btn" aria-label="Cerrar mensaje">&times;</button>
-        <div class="ps-content">
-            <small><strong>PD:</strong> Perdón por las flores que iban a llegar, parece que será para otra fecha, ya que esa florería ni flores tiene jajajajaja...</small>
-        </div>
-    </aside>
-
-    <!-- Modal de Reproductor Elegante de 2 Columnas (Media + Poema Rico) -->
+    <!-- Modal de Reproductor Elegante de 2 Columnas (Media + Poema Bonito) -->
     <div id="player-modal" class="modal-overlay hidden">
         <div class="player-modal-card">
             <button id="close-player-btn" class="close-modal-btn" aria-label="Cerrar reproductor">&times;</button>
@@ -117,7 +118,7 @@
                 <!-- Columna 2: Poema Romántico Extenso y Personalizado para Lizet -->
                 <div class="poem-column-full">
                     <div class="column-header">
-                        <h4>Poema Dedicado a Lizet</h4>
+                        <h4>Un detalle para Lizet</h4>
                     </div>
                     <div class="poem-wrapper-full">
                         <div class="poem-content-card">
@@ -125,7 +126,7 @@
                             <p id="poem-text-content" class="poem-body">
                                 Cargando poema...
                             </p>
-                            <div class="poem-signature">Escrito con amor por Sebas para Lizet 💛</div>
+                            <div class="poem-signature">Con cariño, Sebas 💛</div>
                         </div>
                     </div>
                 </div>
@@ -153,7 +154,7 @@
         <div class="poems-modal-card">
             <div class="poems-modal-header">
                 <h2>📜 Colección de Poemas para Lizet</h2>
-                <p>Textos dedicados a tus hermosos ojos, tu inteligencia, tu linda forma de ser y tu belleza.</p>
+                <p>Textos dedicados a tus ojos, tu risa, tu forma bonita de ser y tu alegría.</p>
                 <button id="close-poems-btn" class="close-modal-btn">&times;</button>
             </div>
 

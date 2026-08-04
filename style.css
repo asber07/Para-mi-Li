@@ -1,12 +1,15 @@
 /* ==========================================================================
    ESTILOS UI/UX PROFESIONALES: UNIVERSO 3D PARA LIZET ("mi niña, mi Li")
-   Características: Cards visibles por delante y detrás, animación Helix/Sphere,
-   Canción 44 en rojo intenso, y Modal de 2 columnas (Media + Poema Rico).
+   Características:
+   - Tarjetas 3D con estructura DOBLE CARA REAL (Front + Back solidas al girar)
+   - Banner P.D. de las flores destacado y bien visible
+   - Canción 44 en rojo carmesí resplandeciente
+   - Modal de 2 columnas (Media + Poema Romántico Lindo)
    ========================================================================== */
 
 :root {
     --bg-dark-primary: #09090e;
-    --bg-dark-card: rgba(18, 18, 26, 0.92);
+    --bg-dark-card: rgba(18, 18, 26, 0.94);
     --bg-dark-modal: rgba(10, 10, 16, 0.96);
     
     --gold-primary: #ffd700;
@@ -279,10 +282,71 @@ body {
     transform: translateY(-2px);
 }
 
+/* --------------------------------------------------------------------------
+   3. BANNER DESTACADO P.D. (LAS FLORES DE LIZET) - MUY VISIBLE Y ELEGANTE
+   -------------------------------------------------------------------------- */
+.ps-banner-visible {
+    position: fixed;
+    top: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(28, 24, 12, 0.95), rgba(16, 16, 24, 0.95));
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.25), 0 10px 30px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 25px;
+    padding: 10px 42px 10px 20px;
+    max-width: 780px;
+    width: 90%;
+    z-index: 95;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition-smooth);
+}
+
+.ps-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ps-flower-icon {
+    font-size: 1.3rem;
+}
+
+.ps-banner-content p {
+    color: #f0f0ff;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.ps-banner-content p strong {
+    color: var(--gold-primary);
+}
+
+.ps-banner-close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #a0a0b5;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.ps-banner-close:hover {
+    color: #ffffff;
+}
+
 /* Indicador Didáctico */
 .instructions-hint {
     position: fixed;
-    top: 80px;
+    top: 130px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -294,18 +358,18 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 6px 18px;
-    font-size: 0.8rem;
+    padding: 5px 16px;
+    font-size: 0.78rem;
     color: #c0c0d5;
 }
 
 /* --------------------------------------------------------------------------
-   3. ESCENA TRIDIMENSIONAL (3D PERSPECTIVE STAGE & DOUBLE SIDED CARDS)
+   4. ESCENA TRIDIMENSIONAL Y TARJETAS 3D DOBLE CARA REAL
    -------------------------------------------------------------------------- */
 #container-3d {
     width: 100vw;
-    height: calc(100vh - 100px);
-    margin-top: 70px;
+    height: calc(100vh - 120px);
+    margin-top: 80px;
     position: relative;
     overflow: hidden;
     z-index: 5;
@@ -335,17 +399,7 @@ body {
     transition: transform 0.6s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
-/* ANIMACIÓN DE MOVIMIENTO CONTINUO SUBE Y BAJA EN HELIX Y SPHERE */
-#world-3d.anim-bobbing {
-    animation: sceneBobbing 8s ease-in-out infinite;
-}
-
-@keyframes sceneBobbing {
-    0%, 100% { transform: translateZ(var(--cam-z, -120px)) rotateX(var(--rot-x, -8deg)) rotateY(var(--rot-y, 0deg)) translateY(0px); }
-    50% { transform: translateZ(var(--cam-z, -120px)) rotateX(var(--rot-x, -8deg)) rotateY(var(--rot-y, 0deg)) translateY(-25px); }
-}
-
-/* TARJETA 3D DE CANCIÓN (VISIBLES TANTO POR DELANTE COMO POR DETRÁS Y SELECCIONABLES) */
+/* ESTRUCTURA DOBLE CARA REAL DE LAS TARJETAS 3D */
 .card-3d {
     position: absolute;
     width: 260px;
@@ -354,27 +408,43 @@ body {
     top: 50%;
     margin-left: -130px;
     margin-top: -57.5px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: var(--bg-dark-card);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-radius: 14px;
     padding: 14px;
     display: flex;
     align-items: center;
     gap: 12px;
-    cursor: pointer;
     box-shadow: var(--card-shadow);
-    transform-style: preserve-3d;
-    backface-visibility: visible !important; /* CRUCIAL: Se ven por delante y por detrás al girar */
-    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
     pointer-events: auto;
 }
 
-.card-3d:hover {
+.card-face.card-front {
+    transform: rotateY(0deg);
+}
+
+.card-face.card-back {
+    transform: rotateY(180deg);
+}
+
+.card-3d:hover .card-face {
     border-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
-    transform: scale(1.1) !important;
 }
 
 .card-cover {
@@ -409,10 +479,10 @@ body {
     text-overflow: ellipsis;
 }
 
-/* CANCIONES DORADAS SÚPER DESTACADAS (RESPLANDOR ORO 24K GIGANTE) */
-.card-3d.is-gold {
+/* CANCIONES DORADAS SÚPER DESTACADAS (ORO 24K EN AMBAS CARAS) */
+.card-3d.is-gold .card-face {
     border: 3px solid var(--gold-primary) !important;
-    background: linear-gradient(135deg, rgba(48, 36, 10, 0.95), rgba(20, 20, 28, 0.92)) !important;
+    background: linear-gradient(135deg, rgba(48, 36, 10, 0.96), rgba(20, 20, 28, 0.94)) !important;
     box-shadow: 0 0 38px var(--gold-glow), inset 0 0 18px rgba(255, 215, 0, 0.3), 0 12px 35px rgba(0, 0, 0, 0.8) !important;
 }
 
@@ -427,15 +497,15 @@ body {
 }
 
 /* CANCIONES PRINCIPALES (ALL OF ME, LA PROMESA, AMOR) */
-.card-3d.is-primary {
+.card-3d.is-primary .card-face {
     border: 3px solid #ffe875 !important;
     box-shadow: 0 0 42px rgba(255, 232, 117, 0.8) !important;
 }
 
 /* CANCIÓN 44 ROJA INTENSA ESPECIAL (NO ME DIGAS QUE NO) */
-.card-3d.is-red-theme {
+.card-3d.is-red-theme .card-face {
     border: 3px solid #ff334b !important;
-    background: linear-gradient(135deg, rgba(90, 10, 20, 0.95), rgba(20, 10, 15, 0.92)) !important;
+    background: linear-gradient(135deg, rgba(90, 10, 20, 0.96), rgba(20, 10, 15, 0.94)) !important;
     box-shadow: 0 0 38px rgba(255, 51, 75, 0.85), inset 0 0 15px rgba(255, 51, 75, 0.3) !important;
 }
 
@@ -444,52 +514,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   4. MENSAJE DISCRETO P.D. (CON BOTÓN DE CERRAR)
-   -------------------------------------------------------------------------- */
-.ps-toast-container {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: rgba(16, 16, 24, 0.92);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    backdrop-filter: blur(14px);
-    border-radius: 14px;
-    padding: 12px 36px 12px 16px;
-    max-width: 380px;
-    z-index: 90;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-    transition: var(--transition-smooth);
-}
-
-.ps-close-btn {
-    position: absolute;
-    top: 6px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    color: #a0a0b5;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.ps-close-btn:hover {
-    color: #ffffff;
-}
-
-.ps-content small {
-    color: #d0d0e2;
-    font-size: 0.78rem;
-    line-height: 1.4;
-    display: block;
-}
-
-.ps-content small strong {
-    color: var(--gold-primary);
-}
-
-/* --------------------------------------------------------------------------
-   5. MODAL DE REPRODUCTOR ELEGANTE DE 2 COLUMNAS (MEDIA + POEMA RICO)
+   5. MODAL DE REPRODUCTOR ELEGANTE DE 2 COLUMNAS (MEDIA + POEMA BONITO)
    -------------------------------------------------------------------------- */
 .modal-overlay {
     position: fixed;
@@ -683,7 +708,7 @@ body {
 .poem-signature {
     margin-top: 20px;
     font-family: var(--font-handwriting);
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     color: var(--gold-light);
     border-top: 1px dashed rgba(255, 255, 255, 0.15);
     padding-top: 12px;
@@ -803,11 +828,12 @@ body {
 /* Responsive */
 @media (max-width: 950px) {
     .player-grid-2col { grid-template-columns: 1fr; }
-    .ps-toast-container { bottom: 50px; right: 15px; left: 15px; max-width: none; }
+    .ps-banner-visible { top: 70px; width: 94%; padding: 8px 36px 8px 14px; }
 }
 
 @media (max-width: 600px) {
     .navbar { flex-direction: column; height: auto; padding: 10px; gap: 8px; }
-    #container-3d { margin-top: 120px; height: calc(100vh - 160px); }
+    .ps-banner-visible { top: 125px; }
+    #container-3d { margin-top: 160px; height: calc(100vh - 200px); }
     .search-box input { width: 140px; }
 }
