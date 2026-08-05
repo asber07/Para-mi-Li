@@ -1,8 +1,7 @@
 /* ==========================================================================
    LÓGICA JAVASCRIPT COMPLETA: UNIVERSO 3D PARA LIZET ("mi niña, mi Li")
-   - Acceso Mandatorio Inicial (Lichi / 18marzo)
-   - Clic en Foto de Li para abrir Poema Especial de Sebas
-   - Centrado 3D e Interacción Estable por Touchpad, Trackpad o Dedo
+   - Puerta de Acceso Mandatorio Inicial a Pantalla Completa (Lichi / 18marzo)
+   - Clic directo en imagenes/li.png o en "Para Lizet" abre el Poema Especial
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -899,7 +898,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const btnPoems = document.getElementById('btn-poems');
     const btnSongList = document.getElementById('btn-song-list');
+    const liAvatarImg = document.getElementById('li-avatar-img');
     const btnAvatarStory = document.getElementById('btn-avatar-story');
+    const brandTitle = document.getElementById('brand-title');
 
     const layoutBtns = {
         table: document.getElementById('layout-table'),
@@ -942,7 +943,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastX = 0, lastY = 0;
 
     /* ----------------------------------------------------------------------
-       3. LÓGICA DE ACCESO OBLIGATORIO INICIAL (USUARIO: Lichi / CLAVE: 18marzo)
+       3. LÓGICA DE LOGIN OBLIGATORIO INICIAL (USUARIO: Lichi / CLAVE: 18marzo)
        ---------------------------------------------------------------------- */
     if (gateLoginForm) {
         gateLoginForm.addEventListener('submit', (e) => {
@@ -1118,15 +1119,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ----------------------------------------------------------------------
-       6. MODAL HISTORIA AL CLICKEAR AVATAR O TÍTULO DE LIZET 📸
+       6. CLIC DIRECTO EN LA FOTO DE LIZET (imagenes/li.png) O TÍTULO PARA ABRIR POEMA
        ---------------------------------------------------------------------- */
     function openStoryModal() {
         storyModal.classList.remove('hidden');
     }
 
-    if (btnAvatarStory) {
-        btnAvatarStory.addEventListener('click', openStoryModal);
-    }
+    if (liAvatarImg) liAvatarImg.addEventListener('click', openStoryModal);
+    if (btnAvatarStory) btnAvatarStory.addEventListener('click', openStoryModal);
+    if (brandTitle) brandTitle.addEventListener('click', openStoryModal);
 
     if (closeStoryBtn) {
         closeStoryBtn.addEventListener('click', () => {
